@@ -9,7 +9,7 @@ const benefits = [
       </svg>
     ),
     title: 'Curated Experiences',
-    description: 'Every tour is carefully crafted by travel experts who know India inside out. We handle every detail so you can focus on making memories.',
+    description: 'Every tour is carefully crafted by travel experts who know India inside out.',
   },
   {
     icon: (
@@ -19,7 +19,7 @@ const benefits = [
       </svg>
     ),
     title: 'Local Expertise',
-    description: 'Our local guides and partners provide authentic insights that transform a trip into a truly immersive cultural experience.',
+    description: 'Our local guides provide authentic insights that transform a trip into a truly immersive cultural experience.',
   },
   {
     icon: (
@@ -28,7 +28,7 @@ const benefits = [
       </svg>
     ),
     title: 'Flexible Plans',
-    description: "Whether you're a solo traveler, couple, or family group, we adapt our itineraries to match your pace and preferences.",
+    description: "Whether you're a solo traveler, couple, or family, we adapt our itineraries to match your pace.",
   },
   {
     icon: (
@@ -37,7 +37,7 @@ const benefits = [
       </svg>
     ),
     title: 'Trusted Support',
-    description: '24/7 assistance during your trip. From the moment you inquire to the day you return home, we are always just a call away.',
+    description: '24/7 assistance during your trip. From inquiry to return, we are always just a call away.',
   },
 ]
 
@@ -54,13 +54,13 @@ export default function HomeWhyUs() {
           {benefits.map((benefit, i) => (
             <motion.div
               key={benefit.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-2xl p-7 text-center shadow-sm border border-neutral-100 hover:shadow-md hover:border-primary-100 transition-all duration-300"
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: 'easeOut' }}
+              className="bg-white rounded-2xl p-7 text-center"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-5">
+              <div className="w-14 h-14 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-5">
                 {benefit.icon}
               </div>
               <h3 className="font-heading text-lg font-semibold mb-3">{benefit.title}</h3>

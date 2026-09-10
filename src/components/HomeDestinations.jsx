@@ -15,50 +15,69 @@ export default function HomeDestinations() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {featured.map((dest, i) => (
-            <motion.div
-              key={dest.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <Link
-                to={`/destinations/${dest.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-neutral-100"
+          {featured.map((dest, i) => {
+            const isFirst = i === 0
+
+            return (
+              <motion.div
+                key={dest.slug}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className={isFirst ? 'sm:col-span-2' : ''}
               >
-                <div className="relative h-56 sm:h-64 overflow-hidden">
-                  <img
-                    src={dest.image}
-                    alt={`${dest.name} - ${dest.tagline}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="bg-white/20 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full">
+                <Link
+                  to={`/destinations/${dest.slug}`}
+                  className="group block rounded-2xl overflow-hidden"
+                >
+                  <div className={`relative overflow-hidden ${isFirst ? 'h-80' : 'h-64'}`}>
+                    <img
+                      src={dest.image}
+                      alt={`${dest.name} - ${dest.tagline}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                    <div className="absolute top-4 right-4">
+                      <span className="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full">
                         {dest.tourCount} tours
                       </span>
                     </div>
-                    <h3 className="font-heading text-xl font-bold text-white">
-                      {dest.name}
-                    </h3>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="font-heading text-2xl md:text-3xl font-bold text-white mb-1">
+                        {dest.name}
+                      </h3>
+                      <p className="text-white/70 text-sm">{dest.tagline}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="p-5">
-                  <p className="text-xs text-primary-600 font-medium mb-1">{dest.state}</p>
-                  <p className="text-neutral-500 text-sm line-clamp-2 mb-4">{dest.shortDescription}</p>
-                  <span className="inline-flex items-center text-primary-600 font-medium text-sm group-hover:text-primary-700 transition-colors">
-                    Explore
-                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+
+                  <div className="p-5">
+                    <p className="text-xs font-semibold text-primary-600 uppercase tracking-wider mb-2">
+                      {dest.state}
+                    </p>
+                    <p className="text-neutral-500 text-sm leading-relaxed line-clamp-2 mb-4">
+                      {dest.shortDescription}
+                    </p>
+                    <span className="inline-flex items-center text-primary-600 font-medium text-sm group-hover:text-primary-700 transition-colors duration-300">
+                      Explore
+                      <svg
+                        className="w-4 h-4 ml-1 group-hover:translate-x-1.5 transition-transform duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

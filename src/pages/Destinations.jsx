@@ -85,7 +85,7 @@ export default function Destinations() {
                 >
                   <Link
                     to={`/destinations/${dest.slug}`}
-                    className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-neutral-100 h-full"
+                    className="group block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-500 h-full"
                   >
                     <div className="relative h-56 sm:h-64 overflow-hidden">
                       <img

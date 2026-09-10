@@ -71,7 +71,7 @@ export default function Reviews() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto mb-16"
           >
-             <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8 md:p-12 border border-primary-100 relative overflow-hidden">
+             <div className="bg-gradient-to-br from-secondary-50 to-secondary-100 rounded-2xl p-8 md:p-12 relative overflow-hidden">
               <div className="absolute top-6 right-8 text-8xl text-primary-200 font-heading leading-none select-none">"</div>
               <div className="relative z-10">
                 <div className="flex items-center gap-0.5 mb-4">
@@ -85,7 +85,7 @@ export default function Reviews() {
                   "{reviews[0].text}"
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-secondary-100 flex items-center justify-center text-secondary-700 font-bold flex-shrink-0">
                     {reviews[0].name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
@@ -106,7 +106,7 @@ export default function Reviews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl p-6 hover:shadow-md transition-shadow duration-300"
               >
                 <div className="flex items-center gap-0.5 mb-4">
                   {[...Array(5)].map((_, j) => (
@@ -158,9 +158,9 @@ export default function Reviews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="text-center bg-white rounded-2xl p-6 shadow-sm border border-neutral-100"
+                className="text-center bg-white rounded-2xl p-6"
               >
-                <div className="w-14 h-14 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-4">
                   {item.icon}
                 </div>
                 <h3 className="font-heading font-semibold mb-2">{item.title}</h3>
@@ -172,7 +172,7 @@ export default function Reviews() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-neutral-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div
@@ -184,13 +184,13 @@ export default function Reviews() {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Create Your Own Story?
             </h2>
-            <p className="text-primary-100 max-w-xl mx-auto mb-8">
+            <p className="text-neutral-400 max-w-xl mx-auto mb-8">
               Join thousands of happy travelers who explored India with us. Your adventure awaits.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/tours"
-                className="inline-flex items-center justify-center bg-white text-primary-700 font-semibold px-8 py-4 rounded-full hover:bg-primary-50 transition-colors duration-300"
+                className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-700 transition-colors duration-300"
               >
                 Explore Tours
               </Link>

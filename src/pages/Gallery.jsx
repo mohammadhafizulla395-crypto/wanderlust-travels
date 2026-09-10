@@ -197,7 +197,7 @@ export default function Gallery() {
       </AnimatePresence>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-neutral-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div
@@ -209,13 +209,13 @@ export default function Gallery() {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
               Want to Capture Your Own Moments?
             </h2>
-            <p className="text-primary-100 max-w-xl mx-auto mb-8">
+            <p className="text-neutral-400 max-w-xl mx-auto mb-8">
               Let us plan a trip that gives you photos and memories worth cherishing forever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/tours"
-                className="inline-flex items-center justify-center bg-white text-primary-700 font-semibold px-8 py-4 rounded-full hover:bg-primary-50 transition-colors duration-300"
+                className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-700 transition-colors duration-300"
               >
                 Browse Tours
               </Link>

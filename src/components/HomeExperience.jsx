@@ -1,65 +1,76 @@
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-export default function HomeExperience() {
+const HomeExperience = () => {
   return (
-    <section className="py-20 md:py-28 bg-neutral-900 overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="bg-neutral-900 py-20 lg:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Column - Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-              <img
-                src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=800&q=80"
-                alt="Traveler enjoying a scenic mountain view"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-primary-600 text-white rounded-2xl p-6 shadow-xl max-w-[200px]">
-              <div className="text-3xl font-bold mb-1">8+</div>
-              <div className="text-sm text-primary-100">Years of crafting unforgettable journeys</div>
+            <img
+              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+              alt="Road trip travel adventure"
+              className="rounded-2xl aspect-[4/5] object-cover w-full"
+            />
+            <div className="absolute bottom-6 right-6 bg-secondary-700 text-white rounded-2xl p-6 max-w-[220px]">
+              <p className="font-heading text-2xl font-bold leading-tight">
+                8+
+              </p>
+              <p className="text-sm mt-1 text-secondary-100">
+                Years of crafting unforgettable journeys
+              </p>
             </div>
           </motion.div>
 
+          {/* Right Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex flex-col gap-6"
           >
-            <p className="text-primary-400 font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+            <span className="text-secondary-400 uppercase tracking-[0.2em] text-sm font-medium">
               Travel Differently
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              More Than a Trip.<br />A Story You'll Remember.
+            </span>
+
+            <h2 className="font-heading text-white text-3xl md:text-4xl lg:text-5xl leading-tight">
+              More Than a Trip. A Story You'll Remember.
             </h2>
-            <p className="text-neutral-300 leading-relaxed mb-6">
-              At Wanderlust Travels, we believe that travel is about more than just visiting new places.
-              It's about the moments that change you — the sunrise over a Himalayan peak, the laughter
-              shared with locals over a traditional meal, the silence of a backwater sunset.
+
+            <p className="text-neutral-300 text-lg leading-relaxed">
+              We don't believe in cookie-cutter vacations. Every itinerary we
+              craft is shaped around your curiosity, your pace, and the moments
+              that matter most to you — from hidden alleyway cafés to
+              sun-drenched coastlines you won't find on a postcard.
             </p>
-            <p className="text-neutral-400 leading-relaxed mb-8">
-              We design journeys that go beyond the ordinary, weaving together culture, adventure,
-              and comfort into experiences that become part of who you are.
+
+            <p className="text-neutral-400 text-lg leading-relaxed">
+              With over eight years of handpicked experiences and local
+              partnerships across six continents, we turn the ordinary into
+              something you'll still be talking about decades from now.
             </p>
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 bg-white text-neutral-900 font-semibold px-8 py-4 rounded-full hover:bg-primary-50 transition-colors duration-300"
-            >
-              Discover Our Story
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+
+            <div className="pt-4">
+              <Link
+                to="/about"
+                className="inline-block bg-white text-neutral-900 font-semibold px-8 py-4 rounded-full hover:bg-primary-50 transition-colors duration-300"
+              >
+                Discover Our Story
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default HomeExperience;

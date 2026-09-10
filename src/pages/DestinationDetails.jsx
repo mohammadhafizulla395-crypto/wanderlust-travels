@@ -100,7 +100,7 @@ function DestinationHighlights({ destination }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-start gap-3 bg-white rounded-xl p-5 border border-neutral-100"
+              className="flex items-start gap-3 bg-white rounded-xl p-5"
             >
               <div className="w-8 h-8 rounded-lg bg-secondary-50 text-secondary-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -126,7 +126,7 @@ function BestTimeToVisit({ destination }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-             className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8 md:p-10 border border-primary-100"
+             className="bg-gradient-to-br from-secondary-50 to-secondary-100 rounded-2xl p-8 md:p-10"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
@@ -176,7 +176,7 @@ function DestinationTours({ destination, relatedTours }) {
             >
               <Link
                 to={`/tours/${tour.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-neutral-100 h-full"
+                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 h-full"
               >
                 <div className="relative h-52 overflow-hidden">
                   <img
@@ -299,7 +299,7 @@ function TravelTips({ destination }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="bg-white rounded-xl p-6 border border-neutral-100"
+              className="bg-white rounded-xl p-6"
             >
               <h3 className="font-heading font-semibold text-lg mb-2">{tip.title}</h3>
               <p className="text-neutral-500 text-sm leading-relaxed">{tip.text}</p>
@@ -313,7 +313,7 @@ function TravelTips({ destination }) {
 
 function DestinationCTA({ destination }) {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
+    <section className="py-16 md:py-24 bg-neutral-900 text-white">
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -324,13 +324,13 @@ function DestinationCTA({ destination }) {
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
             Ready to Explore {destination.name}?
           </h2>
-          <p className="text-primary-100 max-w-xl mx-auto mb-8">
+          <p className="text-neutral-400 max-w-xl mx-auto mb-8">
             Let us help you plan the perfect trip to {destination.name}. Get in touch and we'll create a personalized itinerary just for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/tours?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center bg-white text-primary-700 font-semibold px-8 py-4 rounded-full hover:bg-primary-50 transition-colors duration-300"
+              className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-700 transition-colors duration-300"
             >
               View Tours
             </Link>
@@ -374,7 +374,7 @@ function RelatedDestinations({ currentSlug }) {
             >
               <Link
                 to={`/destinations/${dest.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-neutral-100"
+                className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
               >
                 <div className="relative h-44 overflow-hidden">
                   <img

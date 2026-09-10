@@ -98,7 +98,7 @@ export default function About() {
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-lg p-6 max-w-[200px]">
-                <div className="text-3xl font-bold text-primary-600 mb-1">8+</div>
+                <div className="text-3xl font-bold text-secondary-600 mb-1">8+</div>
                 <div className="text-sm text-neutral-500">Years of crafting unforgettable journeys</div>
               </div>
             </motion.div>
@@ -122,9 +122,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-center bg-white rounded-2xl p-6 shadow-sm border border-neutral-100"
+                className="text-center bg-white rounded-2xl p-6"
               >
-                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">{stat.number}</div>
+                <div className="text-3xl md:text-4xl font-bold text-secondary-600 mb-2">{stat.number}</div>
                 <div className="text-neutral-500 text-sm">{stat.label}</div>
               </motion.div>
             ))}
@@ -158,11 +158,11 @@ export default function About() {
                 className="flex gap-6 mb-8 last:mb-0"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-secondary-100 text-secondary-700 flex items-center justify-center font-bold text-sm flex-shrink-0">
                     {item.year}
                   </div>
                   {i < timeline.length - 1 && (
-                    <div className="w-px flex-1 bg-primary-200 mt-2" />
+                    <div className="w-px flex-1 bg-secondary-200 mt-2" />
                   )}
                 </div>
                 <div className="pb-8">
@@ -189,9 +189,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-neutral-100"
+                className="bg-white rounded-2xl p-8"
               >
-                <div className="w-16 h-16 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-5">
+                <div className="w-16 h-16 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center mb-5">
                   {item.icon}
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-3">{item.title}</h3>
@@ -225,9 +225,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl p-6 hover:shadow-md transition-shadow duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-4">
                   {item.icon}
                 </div>
                 <h3 className="font-heading text-lg font-semibold mb-2">{item.title}</h3>
@@ -268,9 +268,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="flex items-start gap-4 bg-white rounded-xl p-5 border border-neutral-100"
+                className="flex items-start gap-4 bg-white rounded-xl p-5"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-secondary-50 text-secondary-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                   {item.icon}
                 </div>
                 <div>

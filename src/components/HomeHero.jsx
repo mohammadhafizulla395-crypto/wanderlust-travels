@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 export default function HomeHero() {
   return (
-    <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=1920&q=80"
@@ -11,8 +11,8 @@ export default function HomeHero() {
           className="w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/70 via-neutral-900/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/80 via-neutral-900/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/70 via-transparent to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10 py-20">
@@ -21,7 +21,7 @@ export default function HomeHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-primary-400 font-semibold text-sm tracking-[0.25em] uppercase mb-4"
+            className="text-primary-400 font-semibold text-sm tracking-[0.3em] uppercase mb-4"
           >
             Explore &bull; Experience &bull; Remember
           </motion.p>
@@ -84,7 +84,7 @@ export default function HomeHero() {
           <div className="w-px bg-white/20" />
           <div className="text-center">
             <div className="text-2xl font-bold text-white">4.9</div>
-            <div className="text-xs text-white/60 mt-0.5">Average Rating</div>
+            <div className="text-xs text-white/60 mt-0.5">Rating</div>
           </div>
         </motion.div>
       </div>

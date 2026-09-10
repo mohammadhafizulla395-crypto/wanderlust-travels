@@ -91,7 +91,7 @@ Please share the availability and details.`
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5 bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-neutral-100">
+            <form onSubmit={handleSubmit} className="space-y-5 bg-white rounded-2xl p-6 md:p-10">
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-1">Full Name *</label>
                 <input

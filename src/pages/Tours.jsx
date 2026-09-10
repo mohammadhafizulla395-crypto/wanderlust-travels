@@ -137,7 +137,7 @@ export default function Tours() {
                 >
                   <Link
                     to={`/tours/${tour.slug}`}
-                    className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-neutral-100 h-full"
+                    className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 h-full"
                   >
                     <div className="relative h-56 overflow-hidden">
                       <img
