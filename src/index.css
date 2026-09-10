@@ -7,11 +7,11 @@
   --color-primary-200: #f9d4a5;
   --color-primary-300: #f5b56d;
   --color-primary-400: #ef8d2e;
-  --color-primary-500: #ea7416;
-  --color-primary-600: #db5a0c;
-  --color-primary-700: #b5430c;
-  --color-primary-800: #903612;
-  --color-primary-900: #742e12;
+  --color-primary-500: #d66a1f;
+  --color-primary-600: #c25a16;
+  --color-primary-700: #a14512;
+  --color-primary-800: #843814;
+  --color-primary-900: #6d2f14;
 
   --color-secondary-50: #f0f9f4;
   --color-secondary-100: #daf1e4;
@@ -21,22 +21,22 @@
   --color-secondary-500: #34956a;
   --color-secondary-600: #247854;
   --color-secondary-700: #1d6045;
-  --color-secondary-800: #1a4d39;
-  --color-secondary-900: #164030;
+  --color-secondary-800: #174a3a;
+  --color-secondary-900: #143d31;
 
-  --color-neutral-50: #fafaf9;
-  --color-neutral-100: #f5f5f4;
-  --color-neutral-200: #e7e5e4;
-  --color-neutral-300: #d6d3d1;
-  --color-neutral-400: #a8a29e;
-  --color-neutral-500: #78716c;
-  --color-neutral-600: #57534e;
-  --color-neutral-700: #44403c;
-  --color-neutral-800: #292524;
-  --color-neutral-900: #1c1917;
+  --color-neutral-50: #F8F5EF;
+  --color-neutral-100: #f0ede6;
+  --color-neutral-200: #e2ddd3;
+  --color-neutral-300: #cdc5b8;
+  --color-neutral-400: #a9a094;
+  --color-neutral-500: #8a8077;
+  --color-neutral-600: #6b6359;
+  --color-neutral-700: #504a42;
+  --color-neutral-800: #2e2a25;
+  --color-neutral-900: #1C1C1A;
 
-  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
 *,
@@ -53,7 +53,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-neutral-800);
-  background-color: #ffffff;
+  background-color: #F8F5EF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

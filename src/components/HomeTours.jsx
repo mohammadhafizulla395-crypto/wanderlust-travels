@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { tours } from '../data/tours'
-import SectionHeading from './SectionHeading'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -12,47 +11,15 @@ const fadeUp = {
   }),
 }
 
-function TourMeta({ tour }) {
+function StarIcon() {
   return (
-    <div className="flex items-center gap-2 text-sm text-neutral-400">
-      <span>{tour.duration}</span>
-      <span>·</span>
-      <svg className="w-3.5 h-3.5 text-primary-400 fill-current" viewBox="0 0 20 20">
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-      <span className="text-neutral-600 font-medium">{tour.rating}</span>
-    </div>
+    <svg className="w-4 h-4 text-primary-400 fill-current" viewBox="0 0 20 20">
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+    </svg>
   )
 }
 
-function PriceBadge({ price }) {
-  return (
-    <span className="bg-primary-600 text-white rounded-full px-3 py-1 text-xs font-bold">
-      ₹{price.toLocaleString()}
-    </span>
-  )
-}
-
-function TourActions({ tour }) {
-  return (
-    <div className="flex gap-3">
-      <Link
-        to={`/tours/${tour.slug}`}
-        className="flex-1 text-center bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium text-sm py-2.5 transition-colors"
-      >
-        View Details
-      </Link>
-      <Link
-        to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-        className="flex-1 text-center border border-neutral-200 hover:bg-neutral-50 text-neutral-700 rounded-full font-medium text-sm py-2.5 transition-colors"
-      >
-        Enquire
-      </Link>
-    </div>
-  )
-}
-
-function FeaturedCard({ tour }) {
+function FeaturedTour({ tour }) {
   return (
     <motion.div
       custom={0}
@@ -60,31 +27,58 @@ function FeaturedCard({ tour }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      className="group bg-white rounded-2xl overflow-hidden"
+      className="group"
     >
-      <div className="flex flex-col lg:flex-row h-full">
-        <div className="relative lg:w-1/2 overflow-hidden rounded-2xl lg:rounded-r-none">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-2xl overflow-hidden">
+        <div className="relative overflow-hidden aspect-[3/2] lg:aspect-auto">
           <img
             src={tour.image}
             alt={`${tour.name} - ${tour.destination}`}
-            className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
           />
-          <div className="absolute top-4 right-4">
-            <PriceBadge price={tour.price} />
-          </div>
         </div>
 
-        <div className="lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-          <TourMeta tour={tour} />
-          <h3 className="font-heading text-2xl sm:text-3xl font-semibold mt-3 mb-4 group-hover:text-primary-600 transition-colors">
+        <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+          <h3 className="font-heading text-2xl md:text-3xl font-bold text-neutral-900 mb-2">
             {tour.name}
           </h3>
-          <p className="text-neutral-500 text-sm leading-relaxed mb-8">
+
+          <div className="flex items-center gap-2 text-sm text-neutral-500 mb-3">
+            <span>{tour.destination}</span>
+            <span>·</span>
+            <span>{tour.duration}</span>
+          </div>
+
+          <div className="flex items-center gap-1.5 mb-5">
+            <StarIcon />
+            <span className="text-sm font-medium text-neutral-700">{tour.rating}</span>
+          </div>
+
+          <p className="text-neutral-500 text-sm leading-relaxed mb-6">
             {tour.shortDescription}
           </p>
-          <div className="mt-auto">
-            <TourActions tour={tour} />
+
+          <div className="flex items-baseline gap-1 mb-8">
+            <span className="font-heading text-2xl font-bold text-primary-500">
+              ₹{tour.price.toLocaleString()}
+            </span>
+            <span className="text-neutral-400 text-sm">/ person</span>
+          </div>
+
+          <div className="flex gap-3">
+            <Link
+              to={`/tours/${tour.slug}`}
+              className="bg-primary-500 hover:bg-primary-600 text-white rounded-lg px-6 py-2.5 font-medium text-sm transition-colors"
+            >
+              View Details
+            </Link>
+            <Link
+              to={`/booking?tour=${encodeURIComponent(tour.name)}`}
+              className="border border-neutral-200 hover:bg-neutral-50 text-neutral-700 rounded-lg px-6 py-2.5 font-medium text-sm transition-colors"
+            >
+              Enquire
+            </Link>
           </div>
         </div>
       </div>
@@ -92,7 +86,7 @@ function FeaturedCard({ tour }) {
   )
 }
 
-function SmallCard({ tour, index }) {
+function SupportingTour({ tour, index }) {
   return (
     <motion.div
       custom={index}
@@ -100,30 +94,30 @@ function SmallCard({ tour, index }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      className="group bg-white rounded-2xl overflow-hidden h-full flex flex-col"
+      className="group bg-white rounded-xl p-4 flex gap-5 items-center"
     >
-      <div className="relative h-52 overflow-hidden rounded-2xl">
+      <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0">
         <img
           src={tour.image}
           alt={`${tour.name} - ${tour.destination}`}
-          className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        <div className="absolute top-3 right-3">
-          <PriceBadge price={tour.price} />
-        </div>
       </div>
 
-      <div className="p-5 flex flex-col flex-1">
-        <TourMeta tour={tour} />
-        <h3 className="font-heading text-lg font-semibold mt-2 mb-2 group-hover:text-primary-600 transition-colors">
+      <div className="flex-1 min-w-0">
+        <h4 className="font-heading text-base font-bold text-neutral-900 truncate">
           {tour.name}
-        </h3>
-        <p className="text-neutral-500 text-sm line-clamp-2 mb-6 flex-1">
-          {tour.shortDescription}
-        </p>
-        <div className="mt-auto">
-          <TourActions tour={tour} />
+        </h4>
+        <p className="text-sm text-neutral-500 mt-0.5">{tour.destination}</p>
+        <div className="flex items-center justify-between mt-2">
+          <span className="font-heading text-lg font-bold text-primary-500">
+            ₹{tour.price.toLocaleString()}
+          </span>
+          <div className="flex items-center gap-1">
+            <StarIcon />
+            <span className="text-sm font-medium text-neutral-700">{tour.rating}</span>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -131,22 +125,25 @@ function SmallCard({ tour, index }) {
 }
 
 export default function HomeTours() {
-  const featured = tours.slice(0, 4)
-  const [main, ...rest] = featured
+  const [main, ...supporting] = tours.slice(0, 4)
 
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-24 md:py-32 bg-neutral-50">
       <div className="container mx-auto px-4">
-        <SectionHeading
-          title="Journeys Worth Taking"
-          subtitle="Handpicked tours that combine comfort, adventure, and authentic cultural experiences across India."
-        />
+        <div className="mb-12 md:mb-16">
+          <span className="text-primary-500 text-xs font-semibold tracking-[0.3em] uppercase">
+            Curated Journeys
+          </span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-900 mt-3">
+            Tours Worth<br />Taking
+          </h2>
+        </div>
 
-        <FeaturedCard tour={main} />
+        <FeaturedTour tour={main} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8">
-          {rest.map((tour, i) => (
-            <SmallCard key={tour.slug} tour={tour} index={i + 1} />
+        <div className="flex flex-col gap-4 mt-8">
+          {supporting.map((tour, i) => (
+            <SupportingTour key={tour.slug} tour={tour} index={i + 1} />
           ))}
         </div>
 
@@ -158,7 +155,7 @@ export default function HomeTours() {
         >
           <Link
             to="/tours"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
+            className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold text-sm transition-colors"
           >
             View All Tours
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

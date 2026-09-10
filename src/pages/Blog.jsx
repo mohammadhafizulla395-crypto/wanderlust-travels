@@ -29,40 +29,45 @@ export default function Blog() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900 text-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl"
-          >
-            <p className="text-neutral-300 font-semibold text-sm tracking-[0.2em] uppercase mb-3">
-              Stories & Tips
-            </p>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-              Travel Blog
-            </h1>
-            <p className="text-neutral-300 text-lg leading-relaxed">
-              Stories, tips, and inspiration for your next adventure across India.
-            </p>
-          </motion.div>
+      <section className="bg-white py-20 md:py-28 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="text-secondary-600 font-semibold text-xs tracking-[0.25em] uppercase mb-4">
+                Stories
+              </p>
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.1] mb-6">
+                Travel<br />Blog
+              </h1>
+              <p className="text-neutral-500 text-lg leading-relaxed max-w-md">
+                Stories, tips, and inspiration for your next adventure across India.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="relative"
+            >
+              <div className="rounded-2xl overflow-hidden">
+                <img
+                  src={blogImages[featured.slug]}
+                  alt={featured.title}
+                  className="w-full h-80 md:h-[400px] object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Featured Article */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-10"
-          >
-            <h2 className="font-heading text-2xl font-bold mb-2">Featured Article</h2>
-          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,31 +76,28 @@ export default function Blog() {
           >
             <Link
               to={`/blog/${featured.slug}`}
-              className="group grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
+              className="group grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl overflow-hidden"
             >
-              <div className="relative h-64 lg:h-full min-h-[280px] overflow-hidden">
+              <div className="relative overflow-hidden rounded-2xl">
                 <img
                   src={blogImages[featured.slug]}
                   alt={featured.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full aspect-[3/2] object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-primary-600 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                  <span className="bg-neutral-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg">
                     Featured
                   </span>
                 </div>
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-medium text-secondary-600 bg-secondary-50 px-3 py-1 rounded-full">
-                    {featured.category}
-                  </span>
-                  <span className="text-xs text-neutral-400">{featured.date}</span>
-                </div>
-                <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary-600 transition-colors">
+              <div className="flex flex-col justify-center py-4">
+                <span className="inline-block text-xs font-medium text-secondary-700 bg-secondary-50 px-3 py-1 rounded-lg w-fit mb-4">
+                  {featured.category}
+                </span>
+                <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-900 mb-4 group-hover:text-primary-600 transition-colors">
                   {featured.title}
-                </h3>
+                </h2>
                 <p className="text-neutral-500 leading-relaxed mb-6">
                   {featured.excerpt}
                 </p>
@@ -126,7 +128,7 @@ export default function Blog() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`flex-shrink-0 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     activeCategory === cat
                       ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
                       : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
@@ -149,9 +151,9 @@ export default function Blog() {
               >
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 h-full"
+                  className="group block bg-white rounded-2xl overflow-hidden h-full"
                 >
-                  <div className="relative h-52 overflow-hidden">
+                  <div className="relative h-52 overflow-hidden rounded-2xl">
                     <img
                       src={blogImages[post.slug]}
                       alt={post.title}
@@ -159,7 +161,7 @@ export default function Blog() {
                       loading="lazy"
                     />
                     <div className="absolute top-3 right-3">
-                      <span className="bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium px-3 py-1 rounded-full">
+                      <span className="bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium px-3 py-1 rounded-lg">
                         {post.category}
                       </span>
                     </div>
@@ -167,10 +169,10 @@ export default function Blog() {
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-xs text-neutral-400">{post.date}</span>
-                      <span className="text-xs text-neutral-300">·</span>
+                      <span className="text-xs text-neutral-300">&middot;</span>
                       <span className="text-xs text-neutral-400">{post.content.length * 2} min read</span>
                     </div>
-                    <h3 className="font-heading text-lg font-semibold mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                    <h3 className="font-heading text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     <p className="text-neutral-500 text-sm line-clamp-2">{post.excerpt}</p>

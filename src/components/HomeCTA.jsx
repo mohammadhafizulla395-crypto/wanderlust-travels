@@ -4,7 +4,7 @@ import { generateWhatsAppUrl } from '../utils/whatsapp'
 
 export default function HomeCTA() {
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -12,32 +12,33 @@ export default function HomeCTA() {
             'url(https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80)',
         }}
       />
-      <div className="absolute inset-0 bg-neutral-900/70" />
+      <div className="absolute inset-0 bg-neutral-900/60" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="relative z-10 mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto"
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-5 leading-tight"
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15]"
           >
-            Ready to Plan Your Next Adventure?
+            Ready to Plan
+            <br />
+            Your Adventure?
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/80 text-lg mb-10 leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-white/70 text-lg mt-6 leading-relaxed"
           >
             Let us help you create the perfect itinerary. Tell us where you want
             to go, and we'll craft a journey tailored just for you.
@@ -47,12 +48,12 @@ export default function HomeCTA() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
           >
             <Link
               to="/booking"
-              className="inline-flex items-center justify-center bg-white text-neutral-900 hover:bg-primary-50 font-semibold px-8 py-4 rounded-full transition-all duration-300 text-base"
+              className="inline-flex items-center justify-center bg-primary-500 hover:bg-primary-600 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-300"
             >
               Start Planning
             </Link>
@@ -63,7 +64,7 @@ export default function HomeCTA() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 text-base"
+              className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white/60 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-300"
             >
               <svg
                 className="w-5 h-5"

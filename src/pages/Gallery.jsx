@@ -43,48 +43,58 @@ export default function Gallery() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900 text-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl"
-          >
-            <p className="text-neutral-300 font-semibold text-sm tracking-[0.2em] uppercase mb-3">
-              Visual Journey
-            </p>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-              Gallery
-            </h1>
-            <p className="text-neutral-300 text-lg leading-relaxed">
-              A visual journey through India's most breathtaking landscapes and experiences.
-            </p>
-          </motion.div>
+      {/* Hero — Split */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-secondary-600 font-semibold text-sm tracking-[0.2em] uppercase mb-3">Gallery</p>
+              <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+                Visual<br />Journey
+              </h1>
+              <p className="text-neutral-500 text-lg leading-relaxed max-w-md">
+                A visual journey through India's most breathtaking landscapes and experiences.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden aspect-[4/3]"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                alt="Mountain landscape"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Filter + Grid */}
-      <section className="py-16 md:py-24">
+      {/* Filter */}
+      <section className="pb-8">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="mb-10"
+            className="flex justify-center"
           >
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`flex-shrink-0 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     activeCategory === cat
-                      ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
-                      : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                      ? 'bg-neutral-900 text-white'
+                      : 'border border-neutral-200 text-neutral-600 hover:border-neutral-300'
                   }`}
                 >
                   {cat}
@@ -92,38 +102,57 @@ export default function Gallery() {
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-            {filtered.map((item, i) => (
-              <motion.button
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                onClick={() => openLightbox(item)}
-                className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-100 cursor-pointer"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white font-medium text-sm">{item.title}</p>
-                  <p className="text-white/60 text-xs">{item.category}</p>
-                </div>
-              </motion.button>
-            ))}
+      {/* Grid — Asymmetric Masonry */}
+      <section className="pb-20 md:pb-28">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-12 gap-3 md:gap-4">
+            {filtered.map((item, i) => {
+              const patterns = [
+                'col-span-12 md:col-span-4 aspect-[3/4]',
+                'col-span-12 md:col-span-4 aspect-square',
+                'col-span-12 md:col-span-4 aspect-[3/4]',
+                'col-span-12 md:col-span-8 aspect-[16/9]',
+                'col-span-12 md:col-span-4 aspect-square',
+                'col-span-12 md:col-span-4 aspect-[3/4]',
+                'col-span-12 md:col-span-4 aspect-square',
+                'col-span-12 md:col-span-4 aspect-[3/4]',
+              ]
+              const pattern = patterns[i % patterns.length]
+
+              return (
+                <motion.button
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-30px' }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  onClick={() => openLightbox(item)}
+                  className={`group relative rounded-2xl overflow-hidden bg-neutral-100 cursor-pointer ${pattern}`}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <p className="text-white font-medium text-sm">{item.title}</p>
+                    <p className="text-white/60 text-xs">{item.category}</p>
+                  </div>
+                </motion.button>
+              )
+            })}
           </div>
 
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mt-6 text-sm text-neutral-400"
+            className="text-center mt-8 text-sm text-neutral-400"
           >
             Showing {filtered.length} of {galleryItems.length} photos
           </motion.div>
@@ -196,9 +225,16 @@ export default function Gallery() {
         )}
       </AnimatePresence>
 
-      {/* CTA */}
-      <section className="py-16 md:py-24 bg-neutral-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
+      {/* CTA — Photography */}
+      <section className="relative py-20 md:py-28 bg-neutral-900 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80"
+            alt="Mountain sunrise"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-neutral-900/60" />
+        </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,13 +245,13 @@ export default function Gallery() {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
               Want to Capture Your Own Moments?
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto mb-8">
+            <p className="text-neutral-300 max-w-xl mx-auto mb-8">
               Let us plan a trip that gives you photos and memories worth cherishing forever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/tours"
-                className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-700 transition-colors duration-300"
+                className="inline-flex items-center justify-center bg-white text-neutral-900 font-semibold px-8 py-4 rounded-full hover:bg-neutral-100 transition-colors duration-300"
               >
                 Browse Tours
               </Link>
