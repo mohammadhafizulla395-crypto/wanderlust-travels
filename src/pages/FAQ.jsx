@@ -72,7 +72,7 @@ export default function FAQ() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+                src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=800&q=80"
                 alt="FAQ"
                 className="rounded-2xl w-full aspect-[4/3] object-cover"
               />

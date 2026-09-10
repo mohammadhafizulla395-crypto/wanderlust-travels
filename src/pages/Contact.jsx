@@ -96,7 +96,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+                src="https://images.unsplash.com/photo-1504150558240-0b4fd8946624?w=800&q=80"
                 alt="Contact"
                 className="rounded-2xl w-full aspect-[4/3] object-cover"
               />
@@ -116,7 +116,7 @@ export default function Contact() {
               className="lg:col-span-5"
             >
               <img
-                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+                src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
                 alt="Travel"
                 className="rounded-2xl w-full aspect-[3/4] object-cover"
               />

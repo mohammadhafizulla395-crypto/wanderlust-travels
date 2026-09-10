@@ -391,13 +391,13 @@ function DestinationCTA({ destination }) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/tours?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center bg-primary-500 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-600 transition-colors duration-300"
+              className="inline-flex items-center justify-center bg-primary-500 text-white font-semibold px-8 py-4 rounded-lg hover:bg-primary-600 transition-colors duration-300"
             >
               View Tours
             </Link>
             <Link
               to={`/booking?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center border border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center border border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               Plan Your Trip
             </Link>

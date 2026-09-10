@@ -69,7 +69,7 @@ export default function Destinations() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'bg-neutral-900 text-white'
+                    ? 'bg-primary-500 text-white'
                     : 'bg-white text-neutral-600 border border-neutral-200 hover:border-neutral-400'
                 }`}
               >
