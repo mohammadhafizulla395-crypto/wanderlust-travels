@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #fdf6ef;
+  --color-primary-100: #faebd5;
+  --color-primary-200: #f4d4a8;
+  --color-primary-300: #ecb672;
+  --color-primary-400: #e49440;
+  --color-primary-500: #dc7b22;
+  --color-primary-600: #d46a1f;
+  --color-primary-700: #b0521a;
+  --color-primary-800: #8d421c;
+  --color-primary-900: #73381a;
+
+  --color-secondary-50: #f0f7f4;
+  --color-secondary-100: #d6ece1;
+  --color-secondary-200: #aed9c5;
+  --color-secondary-300: #7dbfa3;
+  --color-secondary-400: #4f9e7e;
+  --color-secondary-500: #2e8165;
+  --color-secondary-600: #1f6a52;
+  --color-secondary-700: #1a5543;
+  --color-secondary-800: #174a3a;
+  --color-secondary-900: #143d31;
+
+  --color-accent-50: #fdf6ef;
+  --color-accent-100: #faebd5;
+  --color-accent-200: #f4d4a8;
+  --color-accent-300: #ecb672;
+  --color-accent-400: #e49440;
+  --color-accent-500: #dc7b22;
+  --color-accent-600: #d46a1f;
+  --color-accent-700: #b0521a;
+  --color-accent-800: #8d421c;
+  --color-accent-900: #73381a;
+
+  --color-neutral-50: #fafaf9;
+  --color-neutral-100: #f5f5f4;
+  --color-neutral-200: #e7e5e4;
+  --color-neutral-300: #d6d3d1;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-500: #78716c;
+  --color-neutral-600: #57534e;
+  --color-neutral-700: #44403c;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1c1917;
+
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-neutral-800);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input, textarea, select, button {
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-neutral-900);
+  line-height: 1.2;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-primary-900);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
