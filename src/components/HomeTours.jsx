@@ -1,172 +1,186 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { tours } from '../data/tours'
-import SectionHeading from './SectionHeading'
+import Container from './Container'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: 'easeOut' },
-  }),
-}
-
-function TourMeta({ tour }) {
-  return (
-    <div className="flex items-center gap-2 text-sm text-neutral-400">
-      <span>{tour.duration}</span>
-      <span>·</span>
-      <svg className="w-3.5 h-3.5 text-primary-400 fill-current" viewBox="0 0 20 20">
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-      <span className="text-neutral-600 font-medium">{tour.rating}</span>
-    </div>
-  )
-}
-
-function PriceBadge({ price }) {
-  return (
-    <span className="bg-primary-600 text-white rounded-full px-3 py-1 text-xs font-bold">
-      ₹{price.toLocaleString()}
-    </span>
-  )
-}
-
-function TourActions({ tour }) {
-  return (
-    <div className="flex gap-3">
-      <Link
-        to={`/tours/${tour.slug}`}
-        className="flex-1 text-center bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium text-sm py-2.5 transition-colors"
-      >
-        View Details
-      </Link>
-      <Link
-        to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-        className="flex-1 text-center border border-neutral-200 hover:bg-neutral-50 text-neutral-700 rounded-full font-medium text-sm py-2.5 transition-colors"
-      >
-        Enquire
-      </Link>
-    </div>
-  )
-}
-
-function FeaturedCard({ tour }) {
-  return (
-    <motion.div
-      custom={0}
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      className="group bg-white rounded-2xl overflow-hidden"
-    >
-      <div className="flex flex-col lg:flex-row h-full">
-        <div className="relative lg:w-1/2 overflow-hidden rounded-2xl lg:rounded-r-none">
-          <img
-            src={tour.image}
-            alt={`${tour.name} - ${tour.destination}`}
-            className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-          />
-          <div className="absolute top-4 right-4">
-            <PriceBadge price={tour.price} />
-          </div>
-        </div>
-
-        <div className="lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-          <TourMeta tour={tour} />
-          <h3 className="font-heading text-2xl sm:text-3xl font-semibold mt-3 mb-4 group-hover:text-primary-600 transition-colors">
-            {tour.name}
-          </h3>
-          <p className="text-neutral-500 text-sm leading-relaxed mb-8">
-            {tour.shortDescription}
-          </p>
-          <div className="mt-auto">
-            <TourActions tour={tour} />
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-function SmallCard({ tour, index }) {
-  return (
-    <motion.div
-      custom={index}
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      className="group bg-white rounded-2xl overflow-hidden h-full flex flex-col"
-    >
-      <div className="relative h-52 overflow-hidden rounded-2xl">
-        <img
-          src={tour.image}
-          alt={`${tour.name} - ${tour.destination}`}
-          className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-          loading="lazy"
-        />
-        <div className="absolute top-3 right-3">
-          <PriceBadge price={tour.price} />
-        </div>
-      </div>
-
-      <div className="p-5 flex flex-col flex-1">
-        <TourMeta tour={tour} />
-        <h3 className="font-heading text-lg font-semibold mt-2 mb-2 group-hover:text-primary-600 transition-colors">
-          {tour.name}
-        </h3>
-        <p className="text-neutral-500 text-sm line-clamp-2 mb-6 flex-1">
-          {tour.shortDescription}
-        </p>
-        <div className="mt-auto">
-          <TourActions tour={tour} />
-        </div>
-      </div>
-    </motion.div>
-  )
-}
+const formatPrice = (p) => `₹${p.toLocaleString('en-IN')}`
 
 export default function HomeTours() {
-  const featured = tours.slice(0, 4)
-  const [main, ...rest] = featured
+  const sectionRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.1 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  const featured = tours[0]
+  const compact = tours.slice(1, 4)
 
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="container mx-auto px-4">
-        <SectionHeading
-          title="Journeys Worth Taking"
-          subtitle="Handpicked tours that combine comfort, adventure, and authentic cultural experiences across India."
-        />
-
-        <FeaturedCard tour={main} />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8">
-          {rest.map((tour, i) => (
-            <SmallCard key={tour.slug} tour={tour} index={i + 1} />
-          ))}
+    <section ref={sectionRef} className="py-24 md:py-32" style={{ backgroundColor: 'var(--color-ivory)' }}>
+      <Container>
+        <div
+          className="mb-14 transition-all duration-700 ease-out"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(20px)',
+          }}
+        >
+          <span
+            className="text-xs font-semibold tracking-[0.2em] uppercase block mb-4"
+            style={{ color: 'var(--color-primary-500)' }}
+          >
+            Featured Journey
+          </span>
+          <h2
+            className="font-heading text-3xl md:text-4xl font-bold"
+            style={{ color: 'var(--color-charcoal)' }}
+          >
+            A Journey We Love
+          </h2>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
+        <div
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8 transition-all duration-800 ease-out delay-200"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(30px)',
+          }}
         >
           <Link
-            to="/tours"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
+            to={`/tours/${featured.slug}`}
+            className="lg:col-span-7 relative group rounded-2xl overflow-hidden cursor-pointer"
+            style={{ aspectRatio: '16/10' }}
           >
-            View All Tours
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            <img
+              src={featured.image}
+              alt={featured.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0" style={{
+              background: 'linear-gradient(to top, rgba(24,25,22,0.65) 0%, transparent 50%)',
+            }} />
           </Link>
-        </motion.div>
-      </div>
+
+          <div
+            className="lg:col-span-5 flex flex-col justify-center p-8 md:p-12 rounded-2xl"
+            style={{
+              backgroundColor: 'var(--color-ivory-soft)',
+              border: '1px solid var(--color-stone-200)',
+            }}
+          >
+            <span
+              className="text-xs font-semibold tracking-[0.15em] uppercase mb-3 px-3 py-1 rounded-full self-start"
+              style={{
+                backgroundColor: 'var(--color-primary-50)',
+                color: 'var(--color-primary-600)',
+              }}
+            >
+              {featured.category}
+            </span>
+            <h3
+              className="font-heading text-2xl md:text-3xl font-bold mb-2"
+              style={{ color: 'var(--color-charcoal)' }}
+            >
+              {featured.name}
+            </h3>
+            <p className="text-sm mb-4" style={{ color: 'var(--color-stone-500)' }}>
+              {featured.destination}
+            </p>
+            <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--color-stone-500)' }}>
+              {featured.shortDescription}
+            </p>
+
+            <div className="flex items-center gap-6 mb-8">
+              <div className="flex items-center gap-1.5 text-sm" style={{ color: 'var(--color-stone-600)' }}>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {featured.duration}
+              </div>
+              <div className="flex items-center gap-1.5 text-sm" style={{ color: 'var(--color-stone-600)' }}>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                {featured.startingLocation}
+              </div>
+              <div className="flex items-center gap-1.5 text-sm font-medium" style={{ color: 'var(--color-primary-600)' }}>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                {featured.rating}
+              </div>
+            </div>
+
+            <div className="flex items-end justify-between">
+              <div>
+                <span className="text-xs block mb-1" style={{ color: 'var(--color-stone-500)' }}>From</span>
+                <span
+                  className="text-3xl font-heading font-bold"
+                  style={{ color: 'var(--color-charcoal)' }}
+                >
+                  {formatPrice(featured.price)}
+                </span>
+                <span className="text-xs ml-1" style={{ color: 'var(--color-stone-500)' }}>/ person</span>
+              </div>
+              <Link
+                to={`/tours/${featured.slug}`}
+                className="inline-flex items-center justify-center px-7 py-3.5 font-semibold rounded-lg transition-all duration-200 text-white text-sm"
+                style={{ backgroundColor: 'var(--color-primary-500)' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-600)'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-500)'}
+              >
+                View Details
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {compact.map((tour, i) => (
+            <Link
+              key={tour.slug}
+              to={`/tours/${tour.slug}`}
+              className="group rounded-xl overflow-hidden transition-all duration-700 ease-out"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${0.5 + i * 0.12}s`,
+                border: '1px solid var(--color-stone-200)',
+                backgroundColor: 'var(--color-ivory-soft)',
+              }}
+            >
+              <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                <img
+                  src={tour.image}
+                  alt={tour.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <h4
+                  className="font-heading text-lg font-bold mb-1"
+                  style={{ color: 'var(--color-charcoal)' }}
+                >
+                  {tour.name}
+                </h4>
+                <p className="text-xs mb-3" style={{ color: 'var(--color-stone-500)' }}>
+                  {tour.duration}
+                </p>
+                <span className="text-sm font-bold" style={{ color: 'var(--color-primary-600)' }}>
+                  {formatPrice(tour.price)}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Container>
     </section>
   )
 }

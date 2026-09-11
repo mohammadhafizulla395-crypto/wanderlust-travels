@@ -1,184 +1,221 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { blogPosts } from '../data/blog'
-import { generateWhatsAppUrl } from '../utils/whatsapp'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { generateWhatsAppUrl } from '../utils/whatsapp';
 
-const categories = ['All', ...new Set(blogPosts.map((p) => p.category))]
+const categories = ['All', 'Destinations', 'Travel Tips', 'Culture', 'Luxury', 'Adventure'];
+
+const blogPosts = [
+  {
+    id: 1,
+    title: 'The Art of Slow Travel: Why Less Is More',
+    excerpt: 'In a world obsessed with bucket lists and rushing from landmark to landmark, we explore the transformative power of lingering longer in a single destination.',
+    category: 'Travel Tips',
+    date: 'March 15, 2024',
+    readTime: '8 min read',
+    featured: true,
+    slug: 'art-of-slow-travel',
+  },
+  {
+    id: 2,
+    title: 'Hidden Temples of Bali: A Guide to Sacred Spaces',
+    excerpt: 'Beyond the well-known temples lie sacred spaces where ancient rituals continue undisturbed. We reveal the island\'s most spiritual corners.',
+    category: 'Destinations',
+    date: 'March 10, 2024',
+    readTime: '6 min read',
+    featured: false,
+    slug: 'hidden-temples-bali',
+  },
+  {
+    id: 3,
+    title: 'Luxury Safari Lodges That Redefine Wildlife Travel',
+    excerpt: 'From private conservancies to community-owned camps, discover safari experiences that combine extraordinary wildlife encounters with uncompromising luxury.',
+    category: 'Luxury',
+    date: 'March 5, 2024',
+    readTime: '10 min read',
+    featured: false,
+    slug: 'luxury-safari-lodges',
+  },
+  {
+    id: 4,
+    title: 'The Culinary Roadmaps of Southeast Asia',
+    excerpt: 'A journey through the region\'s most extraordinary food cultures, from night markets to Michelin-starred restaurants that honor tradition.',
+    category: 'Culture',
+    date: 'February 28, 2024',
+    readTime: '7 min read',
+    featured: false,
+    slug: 'culinary-southeast-asia',
+  },
+  {
+    id: 5,
+    title: 'Patagonia Untamed: Adventure at the Edge of the World',
+    excerpt: 'We trek through the last frontier of wilderness, where glaciers calve into turquoise lakes and condors soar above granite spires.',
+    category: 'Adventure',
+    date: 'February 20, 2024',
+    readTime: '9 min read',
+    featured: false,
+    slug: 'patagonia-untamed',
+  },
+  {
+    id: 6,
+    title: 'The Revival of Rail Travel Across Europe',
+    excerpt: 'As sustainable luxury gains momentum, train journeys are experiencing a renaissance. We chart the most scenic and sophisticated routes.',
+    category: 'Destinations',
+    date: 'February 15, 2024',
+    readTime: '6 min read',
+    featured: false,
+    slug: 'rail-travel-europe',
+  },
+];
 
 const blogImages = {
-  'best-time-to-visit-kerala': 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
-  'rajasthan-desert-camp-guide': 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80',
-  'ladakh-road-trip-tips': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
-  'kerala-backwaters-houseboat-guide': 'https://images.unsplash.com/photo-1590050752117-29885f03b27a?w=800&q=80',
-  'indian-food-trail': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80',
-  'sustainable-travel-india': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-}
+  1: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+  2: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+  3: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80',
+  4: 'https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=800&q=80',
+  5: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+  6: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80',
+};
 
 export default function Blog() {
-  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  useEffect(() => { document.title = 'Travel Blog | Wanderlust Travels' }, [])
-
-  const filtered = activeCategory === 'All'
+  const filteredPosts = selectedCategory === 'All'
     ? blogPosts
-    : blogPosts.filter((p) => p.category === activeCategory)
+    : blogPosts.filter(post => post.category === selectedCategory);
 
-  const featured = blogPosts[0]
+  const featuredPost = blogPosts.find(p => p.featured);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <div>
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900 text-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl"
-          >
-            <p className="text-neutral-300 font-semibold text-sm tracking-[0.2em] uppercase mb-3">
-              Stories & Tips
-            </p>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-              Travel Blog
-            </h1>
-            <p className="text-neutral-300 text-lg leading-relaxed">
-              Stories, tips, and inspiration for your next adventure across India.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Article */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-10"
-          >
-            <h2 className="font-heading text-2xl font-bold mb-2">Featured Article</h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link
-              to={`/blog/${featured.slug}`}
-              className="group grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
+    <main className="bg-ivory min-h-screen">
+      {/* HERO — Split */}
+      <section className="py-20 md:py-28 bg-ivory">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="relative h-64 lg:h-full min-h-[280px] overflow-hidden">
+              <div className="rounded-xl overflow-hidden aspect-[16/9] mb-8">
                 <img
-                  src={blogImages[featured.slug]}
-                  alt={featured.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
+                  src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+                  alt="Travel stories"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-primary-600 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                    Featured
-                  </span>
-                </div>
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-medium text-secondary-600 bg-secondary-50 px-3 py-1 rounded-full">
-                    {featured.category}
-                  </span>
-                  <span className="text-xs text-neutral-400">{featured.date}</span>
-                </div>
-                <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary-600 transition-colors">
-                  {featured.title}
-                </h3>
-                <p className="text-neutral-500 leading-relaxed mb-6">
-                  {featured.excerpt}
-                </p>
-                <div className="flex items-center gap-2 text-primary-600 font-semibold text-sm">
-                  Read Article
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
+              <p className="font-body text-sm uppercase tracking-[0.2em] text-primary-500 mb-3">Stories</p>
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-charcoal mb-6">From the Field</h1>
+              <p className="font-body text-stone-500 leading-relaxed max-w-lg">
+                Dispatches from the world's most extraordinary destinations. Insights, inspiration, and the art of thoughtful travel.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="rounded-xl overflow-hidden aspect-[3/4]"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80"
+                alt="Writer"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Category Filter + Grid */}
-      <section className="pb-16 md:pb-24">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-10"
-          >
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                    activeCategory === cat
-                      ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
-                      : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((post, i) => (
-              <motion.div
-                key={post.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-              >
-                <Link
-                  to={`/blog/${post.slug}`}
-                  className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 h-full"
-                >
-                  <div className="relative h-52 overflow-hidden">
+      {/* FEATURED ARTICLE */}
+      {featuredPost && (
+        <section className="pb-16 bg-ivory-soft">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <p className="font-body text-sm uppercase tracking-[0.2em] text-primary-500 mb-6">Featured Story</p>
+              <Link to={`/blog/${featuredPost.slug}`}>
+                <div className="bg-white rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-0 group">
+                  <div className="overflow-hidden aspect-[4/3] lg:aspect-auto">
                     <img
-                      src={blogImages[post.slug]}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
+                      src={blogImages[featuredPost.id]}
+                      alt={featuredPost.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute top-3 right-3">
-                      <span className="bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium px-3 py-1 rounded-full">
-                        {post.category}
-                      </span>
+                  </div>
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    <span className="font-body text-xs uppercase tracking-wider text-primary-500 mb-3">{featuredPost.category}</span>
+                    <h2 className="font-heading text-2xl md:text-3xl text-charcoal mb-4 group-hover:text-primary-500 transition-colors">{featuredPost.title}</h2>
+                    <p className="font-body text-stone-500 leading-relaxed mb-6">{featuredPost.excerpt}</p>
+                    <div className="flex items-center gap-4 text-xs font-body text-stone-500 uppercase tracking-wider">
+                      <span>{featuredPost.date}</span>
+                      <span className="text-stone-200">|</span>
+                      <span>{featuredPost.readTime}</span>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs text-neutral-400">{post.date}</span>
-                      <span className="text-xs text-neutral-300">·</span>
-                      <span className="text-xs text-neutral-400">{post.content.length * 2} min read</span>
+                </div>
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* FILTER */}
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-center gap-3">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-6 py-2 rounded-full font-body text-sm uppercase tracking-wider transition-all duration-300 ${
+                  selectedCategory === cat
+                    ? 'bg-charcoal text-white'
+                    : 'bg-ivory-soft text-stone-500 border border-stone-200/50 hover:border-charcoal hover:text-charcoal'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ARTICLE GRID */}
+      <section className="pb-20 md:pb-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPosts.filter(p => !p.featured || selectedCategory !== 'All').map((post, i) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Link to={`/blog/${post.slug}`} className="block group">
+                  <div className="bg-white rounded-xl overflow-hidden h-full">
+                    <div className="overflow-hidden h-48">
+                      <img
+                        src={blogImages[post.id]}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
                     </div>
-                    <h3 className="font-heading text-lg font-semibold mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-neutral-500 text-sm line-clamp-2">{post.excerpt}</p>
-                    <div className="flex items-center gap-2 mt-4 text-primary-600 font-medium text-sm">
-                      Read More
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                    <div className="p-6">
+                      <span className="font-body text-xs uppercase tracking-wider text-primary-500 mb-2 block">{post.category}</span>
+                      <h3 className="font-heading text-lg text-charcoal mb-3 group-hover:text-primary-500 transition-colors">{post.title}</h3>
+                      <p className="font-body text-stone-500 text-sm leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
+                      <div className="flex items-center gap-3 text-xs font-body text-stone-500 uppercase tracking-wider">
+                        <span>{post.date}</span>
+                        <span className="text-stone-200">|</span>
+                        <span>{post.readTime}</span>
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -189,43 +226,44 @@ export default function Blog() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-neutral-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10 text-center">
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80"
+            alt="Begin your journey"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-charcoal/70" />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
+            className="bg-ivory-soft rounded-xl p-8 md:p-12 text-center border border-stone-200/50"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+            <p className="font-body text-sm uppercase tracking-[0.2em] text-primary-500 mb-3">Create Your Story</p>
+            <h2 className="font-heading text-3xl md:text-4xl text-charcoal mb-6">
               Inspired to Travel?
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto mb-8">
-              Let us help you turn these stories into your own adventure. Get in touch to start planning.
+            <p className="font-body text-stone-500 leading-relaxed mb-8 max-w-lg mx-auto">
+              Let us turn the stories you read into experiences you live. Every journey begins with a conversation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/tours"
-                className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-700 transition-colors duration-300"
-              >
-                Browse Tours
-              </Link>
-              <a
-                href={generateWhatsAppUrl('Hello! I would like to plan a trip with Wanderlust Travels.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                WhatsApp Us
-              </a>
-            </div>
+            <a
+              href={generateWhatsAppUrl("Hello! I've been reading your blog and am inspired to plan a journey.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary-500 text-white font-body text-sm uppercase tracking-wider px-8 py-3.5 rounded-lg hover:bg-primary-600 transition-colors duration-300"
+            >
+              Start Planning
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           </motion.div>
         </div>
       </section>
-    </div>
-  )
+    </main>
+  );
 }

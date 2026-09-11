@@ -1,74 +1,129 @@
-import { motion } from 'framer-motion'
-import SectionHeading from './SectionHeading'
+import { useEffect, useRef, useState } from 'react'
+import Container from './Container'
 
 const benefits = [
   {
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-    title: 'Curated Experiences',
-    description: 'Every tour is carefully crafted by travel experts who know India inside out.',
+    number: '01',
+    title: 'Expert Local Guides',
+    text: 'Passionate storytellers who know every hidden corner.',
   },
   {
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-    title: 'Local Expertise',
-    description: 'Our local guides provide authentic insights that transform a trip into a truly immersive cultural experience.',
+    number: '02',
+    title: 'Bespoke Itineraries',
+    text: 'Every journey crafted to match your pace and interests.',
   },
   {
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: 'Flexible Plans',
-    description: "Whether you're a solo traveler, couple, or family, we adapt our itineraries to match your pace.",
+    number: '03',
+    title: 'Handpicked Stays',
+    text: 'From heritage havelis to boutique retreats, curated for comfort.',
   },
   {
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-    ),
-    title: 'Trusted Support',
-    description: '24/7 assistance during your trip. From inquiry to return, we are always just a call away.',
+    number: '04',
+    title: 'Seamless Travel',
+    text: 'End-to-end logistics handled, so you simply enjoy.',
   },
 ]
 
 export default function HomeWhyUs() {
-  return (
-    <section className="py-20 md:py-28 bg-neutral-50">
-      <div className="container mx-auto px-4">
-        <SectionHeading
-          title="Why Travel With Us"
-          subtitle="We don't just plan trips — we craft experiences that stay with you long after you return home."
-        />
+  const sectionRef = useRef(null)
+  const [visible, setVisible] = useState(false)
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {benefits.map((benefit, i) => (
-            <motion.div
-              key={benefit.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: 'easeOut' }}
-              className="bg-white rounded-2xl p-7 text-center"
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.15 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={sectionRef}
+      className="py-24 md:py-32 overflow-hidden"
+      style={{ backgroundColor: 'var(--color-ivory-soft)' }}
+    >
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+          <div
+            className="lg:col-span-7 relative rounded-2xl overflow-hidden transition-all duration-1000 ease-out"
+            style={{
+              aspectRatio: '4/5',
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateX(0)' : 'translateX(-40px)',
+            }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1100&q=80"
+              alt="Travel experience"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div
+            className="lg:col-span-5 lg:-ml-16 z-10 mt-8 lg:mt-0 transition-all duration-1000 ease-out delay-300"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(30px)',
+            }}
+          >
+            <div
+              className="rounded-2xl p-8 md:p-12 lg:p-14"
+              style={{
+                backgroundColor: 'var(--color-ivory)',
+                boxShadow: '0 25px 60px rgba(0,0,0,0.08)',
+              }}
             >
-              <div className="w-14 h-14 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-5">
-                {benefit.icon}
+              <span
+                className="text-xs font-semibold tracking-[0.2em] uppercase block mb-4"
+                style={{ color: 'var(--color-primary-500)' }}
+              >
+                Why Travel With Us
+              </span>
+              <h2
+                className="font-heading text-3xl md:text-4xl font-bold leading-tight mb-10"
+                style={{ color: 'var(--color-charcoal)' }}
+              >
+                Every Detail,
+                <br />
+                Considered
+              </h2>
+
+              <div className="space-y-8">
+                {benefits.map((b, i) => (
+                  <div
+                    key={i}
+                    className="flex gap-5 transition-all duration-700 ease-out"
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? 'translateY(0)' : 'translateY(15px)',
+                      transitionDelay: `${0.5 + i * 0.12}s`,
+                    }}
+                  >
+                    <span
+                      className="text-xs font-bold tracking-wider mt-1 flex-shrink-0"
+                      style={{ color: 'var(--color-primary-400)' }}
+                    >
+                      {b.number}
+                    </span>
+                    <div>
+                      <h3
+                        className="font-heading text-lg font-semibold mb-1"
+                        style={{ color: 'var(--color-charcoal)' }}
+                      >
+                        {b.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed" style={{ color: 'var(--color-stone-500)' }}>
+                        {b.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <h3 className="font-heading text-lg font-semibold mb-3">{benefit.title}</h3>
-              <p className="text-neutral-500 text-sm leading-relaxed">{benefit.description}</p>
-            </motion.div>
-          ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
