@@ -1,171 +1,101 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { tours } from '../data/tours'
-import SectionHeading from './SectionHeading'
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: 'easeOut' },
-  }),
-}
-
-function TourMeta({ tour }) {
-  return (
-    <div className="flex items-center gap-2 text-sm text-neutral-400">
-      <span>{tour.duration}</span>
-      <span>·</span>
-      <svg className="w-3.5 h-3.5 text-primary-400 fill-current" viewBox="0 0 20 20">
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-      <span className="text-neutral-600 font-medium">{tour.rating}</span>
-    </div>
-  )
-}
-
-function PriceBadge({ price }) {
-  return (
-    <span className="bg-primary-600 text-white rounded-full px-3 py-1 text-xs font-bold">
-      ₹{price.toLocaleString()}
-    </span>
-  )
-}
-
-function TourActions({ tour }) {
-  return (
-    <div className="flex gap-3">
-      <Link
-        to={`/tours/${tour.slug}`}
-        className="flex-1 text-center bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium text-sm py-2.5 transition-colors"
-      >
-        View Details
-      </Link>
-      <Link
-        to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-        className="flex-1 text-center border border-neutral-200 hover:bg-neutral-50 text-neutral-700 rounded-full font-medium text-sm py-2.5 transition-colors"
-      >
-        Enquire
-      </Link>
-    </div>
-  )
-}
-
-function FeaturedCard({ tour }) {
-  return (
-    <motion.div
-      custom={0}
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      className="group bg-white rounded-2xl overflow-hidden"
-    >
-      <div className="flex flex-col lg:flex-row h-full">
-        <div className="relative lg:w-1/2 overflow-hidden rounded-2xl lg:rounded-r-none">
-          <img
-            src={tour.image}
-            alt={`${tour.name} - ${tour.destination}`}
-            className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-          />
-          <div className="absolute top-4 right-4">
-            <PriceBadge price={tour.price} />
-          </div>
-        </div>
-
-        <div className="lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-          <TourMeta tour={tour} />
-          <h3 className="font-heading text-2xl sm:text-3xl font-semibold mt-3 mb-4 group-hover:text-primary-600 transition-colors">
-            {tour.name}
-          </h3>
-          <p className="text-neutral-500 text-sm leading-relaxed mb-8">
-            {tour.shortDescription}
-          </p>
-          <div className="mt-auto">
-            <TourActions tour={tour} />
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-function SmallCard({ tour, index }) {
-  return (
-    <motion.div
-      custom={index}
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      className="group bg-white rounded-2xl overflow-hidden h-full flex flex-col"
-    >
-      <div className="relative h-52 overflow-hidden rounded-2xl">
-        <img
-          src={tour.image}
-          alt={`${tour.name} - ${tour.destination}`}
-          className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-          loading="lazy"
-        />
-        <div className="absolute top-3 right-3">
-          <PriceBadge price={tour.price} />
-        </div>
-      </div>
-
-      <div className="p-5 flex flex-col flex-1">
-        <TourMeta tour={tour} />
-        <h3 className="font-heading text-lg font-semibold mt-2 mb-2 group-hover:text-primary-600 transition-colors">
-          {tour.name}
-        </h3>
-        <p className="text-neutral-500 text-sm line-clamp-2 mb-6 flex-1">
-          {tour.shortDescription}
-        </p>
-        <div className="mt-auto">
-          <TourActions tour={tour} />
-        </div>
-      </div>
-    </motion.div>
-  )
-}
 
 export default function HomeTours() {
-  const featured = tours.slice(0, 4)
-  const [main, ...rest] = featured
+  const featured = tours[0]
+  const rest = tours.slice(1, 4)
 
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="container mx-auto px-4">
-        <SectionHeading
-          title="Journeys Worth Taking"
-          subtitle="Handpicked tours that combine comfort, adventure, and authentic cultural experiences across India."
-        />
-
-        <FeaturedCard tour={main} />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8">
-          {rest.map((tour, i) => (
-            <SmallCard key={tour.slug} tour={tour} index={i + 1} />
-          ))}
+    <section className="py-20 md:py-28 bg-ivory">
+      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+        <div className="flex items-end justify-between mb-14">
+          <div>
+            <p className="text-primary-500 font-semibold text-[11px] tracking-[0.2em] uppercase mb-3">Journeys</p>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-charcoal leading-tight">
+              Featured Tours
+            </h2>
+          </div>
+          <Link to="/tours" className="text-[13px] font-semibold text-charcoal hover:text-primary-500 transition-colors hidden md:block">
+            View All
+          </Link>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <Link
-            to="/tours"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5 }}
           >
-            View All Tours
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </motion.div>
+            <Link to={`/tours/${featured.slug}`} className="group block bg-white rounded-2xl overflow-hidden">
+              <div className="relative h-[280px] md:h-[340px] overflow-hidden">
+                <img
+                  src={featured.image}
+                  alt={featured.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-charcoal text-xs font-semibold px-3 py-1.5 rounded-lg">
+                  {featured.duration}
+                </div>
+              </div>
+              <div className="p-6 md:p-7">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-forest-500 bg-forest-50 px-2.5 py-1 rounded">{featured.destination}</span>
+                  <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-primary-500 bg-primary-50 px-2.5 py-1 rounded">{featured.category}</span>
+                </div>
+                <h3 className="font-heading text-xl md:text-2xl font-bold text-charcoal group-hover:text-primary-500 transition-colors">
+                  {featured.name}
+                </h3>
+                <p className="text-stone-500 text-sm mt-2 line-clamp-2">{featured.shortDescription}</p>
+                <div className="flex items-center justify-between mt-5 pt-5 border-t border-stone-100">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-bold text-charcoal">₹{featured.price.toLocaleString()}</span>
+                    <span className="text-stone-400 text-xs">/ person</span>
+                  </div>
+                  <span className="text-[13px] font-semibold text-primary-500 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                    View Details
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          <div className="flex flex-col gap-5">
+            {rest.map((t, i) => (
+              <motion.div
+                key={t.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <Link to={`/tours/${t.slug}`} className="group flex bg-white rounded-2xl overflow-hidden">
+                  <div className="w-36 md:w-44 flex-shrink-0 overflow-hidden">
+                    <img src={t.image} alt={t.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="flex-1 p-5 flex flex-col justify-between min-w-0">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[10px] font-semibold tracking-[0.1em] uppercase text-forest-500 bg-forest-50 px-2 py-0.5 rounded">{t.destination}</span>
+                        <span className="text-[10px] text-stone-400">{t.duration}</span>
+                      </div>
+                      <h4 className="font-heading text-sm md:text-base font-bold text-charcoal group-hover:text-primary-500 transition-colors line-clamp-1">
+                        {t.name}
+                      </h4>
+                      <p className="text-stone-400 text-xs mt-1 line-clamp-1">{t.shortDescription}</p>
+                    </div>
+                    <div className="flex items-center justify-between mt-3">
+                      <span className="text-lg font-bold text-charcoal">₹{t.price.toLocaleString()}</span>
+                      <span className="text-[12px] font-semibold text-primary-500">View</span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -6,6 +6,7 @@ import HomeExperience from '../components/HomeExperience'
 import HomeStats from '../components/HomeStats'
 import HomeGallery from '../components/HomeGallery'
 import HomeTestimonials from '../components/HomeTestimonials'
+import HomeBlog from '../components/HomeBlog'
 import HomeCTA from '../components/HomeCTA'
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <HomeStats />
       <HomeGallery />
       <HomeTestimonials />
+      <HomeBlog />
       <HomeCTA />
     </div>
   )
