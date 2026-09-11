@@ -1,110 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #fef7ed;
-  --color-primary-100: #fdecd3;
-  --color-primary-200: #f9d4a5;
-  --color-primary-300: #f5b56d;
-  --color-primary-400: #ef8d2e;
-  --color-primary-500: #ea7416;
-  --color-primary-600: #db5a0c;
-  --color-primary-700: #b5430c;
-  --color-primary-800: #903612;
-  --color-primary-900: #742e12;
+  --color-ivory: #F7F4ED;
+  --color-ivory-light: #FDFCFA;
+  --color-charcoal: #17201C;
+  --color-forest: #174B3C;
+  --color-forest-deep: #0E362B;
+  --color-terracotta: #C86631;
+  --color-terracotta-light: #D4824F;
+  --color-stone: #B8AFA3;
+  --color-stone-light: #D5CEC4;
+  --color-stone-dark: #8A8279;
 
-  --color-secondary-50: #f0f9f4;
-  --color-secondary-100: #daf1e4;
-  --color-secondary-200: #b8e2cc;
-  --color-secondary-300: #88ccab;
-  --color-secondary-400: #56b085;
-  --color-secondary-500: #34956a;
-  --color-secondary-600: #247854;
-  --color-secondary-700: #1d6045;
-  --color-secondary-800: #1a4d39;
-  --color-secondary-900: #164030;
+  --color-primary-50: #F7F4ED;
+  --color-primary-100: #EDE8DC;
+  --color-primary-200: #DDD6C6;
+  --color-primary-300: #C8BDA5;
+  --color-primary-400: #B3A284;
+  --color-primary-500: #C86631;
+  --color-primary-600: #B5592A;
+  --color-primary-700: #9A4A22;
+  --color-primary-800: #7F3B1A;
+  --color-primary-900: #652D12;
 
-  --color-neutral-50: #fafaf9;
-  --color-neutral-100: #f5f5f4;
-  --color-neutral-200: #e7e5e4;
-  --color-neutral-300: #d6d3d1;
-  --color-neutral-400: #a8a29e;
-  --color-neutral-500: #78716c;
-  --color-neutral-600: #57534e;
-  --color-neutral-700: #44403c;
-  --color-neutral-800: #292524;
-  --color-neutral-900: #1c1917;
+  --color-secondary-50: #EFF7F4;
+  --color-secondary-100: #D1E8DF;
+  --color-secondary-200: #A3D1BF;
+  --color-secondary-300: #75BA9F;
+  --color-secondary-400: #47A37F;
+  --color-secondary-500: #174B3C;
+  --color-secondary-600: #144235;
+  --color-secondary-700: #0E362B;
+  --color-secondary-800: #0A2A21;
+  --color-secondary-900: #061E17;
+
+  --color-neutral-50: #F7F4ED;
+  --color-neutral-100: #EDE8DC;
+  --color-neutral-200: #DDD6C6;
+  --color-neutral-300: #C4BAA6;
+  --color-neutral-400: #9A9188;
+  --color-neutral-500: #7A726A;
+  --color-neutral-600: #5C554E;
+  --color-neutral-700: #3E3933;
+  --color-neutral-800: #262220;
+  --color-neutral-900: #17201C;
 
   --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: var(--font-body);
-  color: var(--color-neutral-800);
-  background-color: #ffffff;
+  color: #17201C;
+  background-color: #F7F4ED;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul, ol {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-input, textarea, select, button {
-  font: inherit;
-}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; padding: 0; margin: 0; }
+input, textarea, select, button { font: inherit; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  color: var(--color-neutral-900);
-  line-height: 1.2;
+  color: #17201C;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+#root { display: flex; flex-direction: column; min-height: 100vh; }
 
-::selection {
-  background-color: var(--color-primary-200);
-  color: var(--color-primary-900);
-}
+::selection { background-color: #C86631; color: #fff; }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.text-balance { text-wrap: balance; }

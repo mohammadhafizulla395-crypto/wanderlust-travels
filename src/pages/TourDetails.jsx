@@ -14,9 +14,9 @@ function TourHero({ tour }) {
           className="w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent" />
       </div>
-      <div className="container mx-auto px-4 relative z-10 pb-10 md:pb-14">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 relative z-10 pb-10 md:pb-14 w-full">
         <Breadcrumbs items={[
           { label: 'Tours', to: '/tours' },
           { label: tour.name },
@@ -27,10 +27,10 @@ function TourHero({ tour }) {
           transition={{ duration: 0.5 }}
         >
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
+            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-4 py-1.5 rounded-lg">
               {tour.destination}
             </span>
-            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
+            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-4 py-1.5 rounded-lg">
               {tour.category}
             </span>
           </div>
@@ -39,27 +39,27 @@ function TourHero({ tour }) {
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-white/80 mb-6">
             <div className="flex items-center gap-1.5">
-               <svg className="w-4 h-4 text-primary-400 fill-current" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 text-terracotta fill-current" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              <span className="font-medium">{tour.rating}</span>
+              <span className="font-semibold">{tour.rating}</span>
               <span className="text-white/50">({tour.reviewCount} reviews)</span>
             </div>
             <span className="text-white/40">·</span>
             <span>{tour.duration}</span>
             <span className="text-white/40">·</span>
-            <span className="text-primary-300 font-semibold text-lg">₹{tour.price.toLocaleString()} <span className="text-sm font-normal text-white/60">/ person</span></span>
+            <span className="text-terracotta-light font-semibold text-lg">₹{tour.price.toLocaleString()} <span className="text-sm font-normal text-white/60">/ person</span></span>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm shadow-lg shadow-primary-600/25"
+              className="inline-flex items-center justify-center bg-terracotta hover:bg-terracotta-light text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 text-sm shadow-lg shadow-terracotta/25"
             >
               Enquire Now
             </Link>
             <Link
               to={`/destinations/${tour.destinationSlug}`}
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 text-sm"
             >
               View Destination
             </Link>
@@ -81,8 +81,8 @@ function QuickFacts({ tour }) {
   ]
 
   return (
-    <section className="py-12 md:py-16 border-b border-neutral-100">
-      <div className="container mx-auto px-4">
+    <section className="py-12 md:py-16 border-b border-stone-light/60 bg-ivory">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {facts.map((fact, i) => (
             <motion.div
@@ -91,13 +91,13 @@ function QuickFacts({ tour }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="text-center p-4 rounded-xl bg-neutral-50"
+              className="text-center p-4 rounded-xl bg-white"
             >
-               <div className="w-10 h-10 rounded-lg bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-2">
-                 {fact.icon}
-               </div>
-              <p className="text-xs text-neutral-400 mb-0.5">{fact.label}</p>
-              <p className="text-sm font-semibold text-neutral-800">{fact.value}</p>
+              <div className="w-10 h-10 rounded-lg bg-forest/10 text-forest flex items-center justify-center mx-auto mb-2">
+                {fact.icon}
+              </div>
+              <p className="text-xs text-stone-dark mb-0.5">{fact.label}</p>
+              <p className="text-sm font-semibold text-charcoal">{fact.value}</p>
             </motion.div>
           ))}
         </div>
@@ -108,8 +108,8 @@ function QuickFacts({ tour }) {
 
 function TourOverview({ tour }) {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,8 +117,8 @@ function TourOverview({ tour }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">Overview</h2>
-            <p className="text-neutral-600 leading-relaxed text-lg">{tour.description}</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-6">Overview</h2>
+            <p className="text-stone-dark leading-relaxed text-lg">{tour.description}</p>
           </motion.div>
         </div>
       </div>
@@ -128,8 +128,8 @@ function TourOverview({ tour }) {
 
 function TourHighlights({ tour }) {
   return (
-    <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-ivory">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,8 +137,8 @@ function TourHighlights({ tour }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Highlights</h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">Highlights</h2>
+          <p className="text-stone-dark max-w-2xl mx-auto">
             The experiences that make this tour truly special.
           </p>
         </motion.div>
@@ -152,12 +152,12 @@ function TourHighlights({ tour }) {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="flex items-start gap-3 bg-white rounded-xl p-5"
             >
-              <div className="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-8 h-8 rounded-lg bg-forest/10 text-forest flex items-center justify-center flex-shrink-0 mt-0.5">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <span className="text-neutral-700 text-sm leading-relaxed">{h}</span>
+              <span className="text-charcoal text-sm leading-relaxed">{h}</span>
             </motion.div>
           ))}
         </div>
@@ -168,8 +168,8 @@ function TourHighlights({ tour }) {
 
 function TourItinerary({ tour }) {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,15 +177,15 @@ function TourItinerary({ tour }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Day-by-Day Itinerary</h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">Day-by-Day Itinerary</h2>
+          <p className="text-stone-dark max-w-2xl mx-auto">
             A detailed look at each day of your journey.
           </p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
           <div className="relative">
-            <div className="absolute left-5 md:left-6 top-0 bottom-0 w-px bg-neutral-200" />
+            <div className="absolute left-5 md:left-6 top-0 bottom-0 w-px bg-stone-light" />
 
             {tour.itinerary.map((day, i) => (
               <motion.div
@@ -196,12 +196,12 @@ function TourItinerary({ tour }) {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="relative flex gap-4 md:gap-6 pb-8 last:pb-0"
               >
-                <div className="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-600 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-primary-600/20">
+                <div className="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-forest text-white flex items-center justify-center font-bold text-sm shadow-md shadow-forest/20">
                   {String(day.day).padStart(2, '0')}
                 </div>
-                <div className="flex-1 bg-white rounded-xl p-5 md:p-6">
-                  <h3 className="font-heading text-lg font-semibold mb-2">{day.title}</h3>
-                  <p className="text-neutral-500 text-sm leading-relaxed">{day.description}</p>
+                <div className="flex-1 bg-ivory rounded-xl p-5 md:p-6">
+                  <h3 className="font-heading text-lg font-semibold text-charcoal mb-2">{day.title}</h3>
+                  <p className="text-stone-dark text-sm leading-relaxed">{day.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -214,8 +214,8 @@ function TourItinerary({ tour }) {
 
 function InclusionsExclusions({ tour }) {
   return (
-    <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-ivory">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +223,7 @@ function InclusionsExclusions({ tour }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">What's Included</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">What's Included</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -232,20 +232,20 @@ function InclusionsExclusions({ tour }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="bg-white rounded-2xl p-6 md:p-8"
+            className="bg-white rounded-xl p-6 md:p-8"
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-forest/10 text-forest flex items-center justify-center">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-heading text-xl font-bold">Included</h3>
+              <h3 className="font-heading text-xl font-bold text-charcoal">Included</h3>
             </div>
             <ul className="space-y-3">
               {tour.included.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600">
-                  <svg className="w-4 h-4 text-secondary-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <li key={item} className="flex items-start gap-2.5 text-sm text-stone-dark">
+                  <svg className="w-4 h-4 text-forest mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   {item}
@@ -259,19 +259,19 @@ function InclusionsExclusions({ tour }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="bg-white rounded-2xl p-6 md:p-8"
+            className="bg-white rounded-xl p-6 md:p-8"
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
-              <h3 className="font-heading text-xl font-bold">Not Included</h3>
+              <h3 className="font-heading text-xl font-bold text-charcoal">Not Included</h3>
             </div>
             <ul className="space-y-3">
               {tour.excluded.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600">
+                <li key={item} className="flex items-start gap-2.5 text-sm text-stone-dark">
                   <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -290,8 +290,8 @@ function TourGallery({ tour }) {
   if (!tour.gallery || tour.gallery.length === 0) return null
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -299,7 +299,7 @@ function TourGallery({ tour }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Gallery</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">Gallery</h2>
         </motion.div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {tour.gallery.map((item, i) => (
@@ -317,9 +317,9 @@ function TourGallery({ tour }) {
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <p className="text-white text-xs font-medium">{item.caption}</p>
+                <p className="text-white text-xs font-semibold">{item.caption}</p>
               </div>
             </motion.div>
           ))}
@@ -333,8 +333,8 @@ function TravelInfo({ tour }) {
   if (!tour.travelTips || tour.travelTips.length === 0) return null
 
   return (
-    <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-ivory">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -342,8 +342,8 @@ function TravelInfo({ tour }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Travel Information</h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">Travel Information</h2>
+          <p className="text-stone-dark max-w-2xl mx-auto">
             Essential tips to help you prepare for your {tour.destination} adventure.
           </p>
         </motion.div>
@@ -357,8 +357,8 @@ function TravelInfo({ tour }) {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="bg-white rounded-xl p-6"
             >
-              <h3 className="font-heading font-semibold text-lg mb-2">{tip.title}</h3>
-              <p className="text-neutral-500 text-sm leading-relaxed">{tip.text}</p>
+              <h3 className="font-heading font-semibold text-lg text-charcoal mb-2">{tip.title}</h3>
+              <p className="text-stone-dark text-sm leading-relaxed">{tip.text}</p>
             </motion.div>
           ))}
         </div>
@@ -369,36 +369,36 @@ function TravelInfo({ tour }) {
 
 function TourCTA({ tour }) {
   return (
-    <section className="py-16 md:py-24 bg-neutral-900 text-white">
-      <div className="container mx-auto px-4 text-center">
+    <section className="py-16 md:py-24 bg-charcoal">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Book This Tour?
           </h2>
-          <p className="text-neutral-400 max-w-xl mx-auto mb-8">
+          <p className="text-stone-light max-w-xl mx-auto mb-8">
             Send us an enquiry and our travel experts will craft the perfect plan for your {tour.destination} adventure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-primary-600/25"
+              className="inline-flex items-center justify-center bg-terracotta hover:bg-terracotta-light text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 shadow-lg shadow-terracotta/25"
             >
               Enquire Now
             </Link>
             <Link
               to={`/destinations/${tour.destinationSlug}`}
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               View Destination
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               Contact Us
             </Link>
@@ -420,8 +420,8 @@ function RelatedTours({ currentSlug, destinationSlug }) {
     .slice(0, 3)
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -429,8 +429,8 @@ function RelatedTours({ currentSlug, destinationSlug }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Related Tours</h2>
-          <p className="text-neutral-500">More journeys you might love.</p>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">Related Tours</h2>
+          <p className="text-stone-dark">More journeys you might love.</p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {related.map((tour, i) => (
@@ -443,9 +443,9 @@ function RelatedTours({ currentSlug, destinationSlug }) {
             >
               <Link
                 to={`/tours/${tour.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
+                className="group block bg-ivory rounded-xl overflow-hidden hover:shadow-xl transition-all duration-500"
               >
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={tour.image}
                     alt={tour.name}
@@ -453,18 +453,18 @@ function RelatedTours({ currentSlug, destinationSlug }) {
                     loading="lazy"
                   />
                   <div className="absolute top-3 right-3">
-                    <span className="bg-primary-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                    <span className="bg-terracotta text-white text-xs font-bold px-3 py-1.5 rounded-lg">
                       ₹{tour.price.toLocaleString()}
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs text-neutral-400">{tour.destination}</span>
-                    <span className="text-neutral-300">·</span>
-                    <span className="text-xs text-neutral-400">{tour.duration}</span>
+                    <span className="text-xs text-stone-dark">{tour.destination}</span>
+                    <span className="text-stone">·</span>
+                    <span className="text-xs text-stone-dark">{tour.duration}</span>
                   </div>
-                  <h3 className="font-heading font-semibold group-hover:text-primary-600 transition-colors">
+                  <h3 className="font-heading font-semibold text-charcoal group-hover:text-terracotta transition-colors">
                     {tour.name}
                   </h3>
                 </div>
@@ -489,10 +489,10 @@ export default function TourDetails() {
 
   if (!tour) {
     return (
-      <div className="py-32 text-center">
-        <h1 className="text-3xl font-bold mb-4">Tour Not Found</h1>
-        <p className="text-neutral-500 mb-6">The tour you're looking for doesn't exist.</p>
-        <Link to="/tours" className="text-primary-600 hover:underline font-medium">
+      <div className="py-32 text-center bg-ivory">
+        <h1 className="text-3xl font-bold text-charcoal mb-4">Tour Not Found</h1>
+        <p className="text-stone-dark mb-6">The tour you're looking for doesn't exist.</p>
+        <Link to="/tours" className="text-terracotta hover:text-terracotta-light font-semibold underline">
           Browse all tours
         </Link>
       </div>

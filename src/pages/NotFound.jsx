@@ -1,34 +1,52 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
-    <div className="py-20 md:py-32">
-      <div className="container mx-auto px-4 text-center">
-        <div className="mb-6">
-          <svg className="w-20 h-20 text-primary-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 9.99 9.99 6.5 17.5zm5.5-6.6c.61 0 1.1.49 1.1 1.1s-.49 1.1-1.1 1.1-1.1-.49-1.1-1.1.49-1.1 1.1-1.1z" />
-          </svg>
-        </div>
-        <h1 className="font-heading text-6xl md:text-8xl font-bold text-primary-600 mb-4">404</h1>
-        <h2 className="font-heading text-2xl md:text-3xl font-bold mb-4">Page Not Found</h2>
-        <p className="text-neutral-500 max-w-md mx-auto mb-8">
-          Looks like this page has wandered off the beaten path. Let's get you back on track.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            to="/"
-            className="inline-block bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300"
-          >
-            Return Home
-          </Link>
-          <Link
-            to="/destinations"
-            className="inline-block border-2 border-primary-200 hover:border-primary-300 text-primary-700 font-semibold px-8 py-4 rounded-full transition-colors duration-300"
-          >
-            Browse Destinations
-          </Link>
-        </div>
+    <div className="min-h-screen bg-ivory flex items-center justify-center">
+      <title>Page Not Found | Wanderlust Travels</title>
+
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="font-heading text-[10rem] md:text-[14rem] leading-none text-forest/10 font-bold">
+            404
+          </h1>
+          <div className="-mt-16 md:-mt-20">
+            <h2 className="font-heading text-4xl md:text-5xl text-charcoal mb-4">
+              Page Not Found
+            </h2>
+            <p className="text-charcoal/60 text-lg mb-10 max-w-md mx-auto">
+              Looks like this page has wandered off the beaten path. Let's get you back on track.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/"
+                className="inline-flex items-center justify-center gap-2 bg-forest hover:bg-forest/90 text-white font-semibold px-8 py-3.5 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Return Home
+              </Link>
+              <Link
+                to="/destinations"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-charcoal font-semibold px-8 py-3.5 rounded-lg border border-neutral-200 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Browse Destinations
+              </Link>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default NotFound;
