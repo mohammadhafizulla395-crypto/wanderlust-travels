@@ -16,7 +16,7 @@ function TourHero({ tour }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/30 to-transparent" />
       </div>
-      <div className="container mx-auto px-4 relative z-10 pb-10 md:pb-14">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 relative z-10 pb-10 md:pb-14 w-full">
         <Breadcrumbs items={[
           { label: 'Tours', to: '/tours' },
           { label: tour.name },
@@ -27,10 +27,10 @@ function TourHero({ tour }) {
           transition={{ duration: 0.5 }}
         >
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
+            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-lg">
               {tour.destination}
             </span>
-            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
+            <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-lg">
               {tour.category}
             </span>
           </div>
@@ -39,7 +39,7 @@ function TourHero({ tour }) {
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-white/80 mb-6">
             <div className="flex items-center gap-1.5">
-               <svg className="w-4 h-4 text-primary-400 fill-current" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 text-primary-400 fill-current" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               <span className="font-medium">{tour.rating}</span>
@@ -53,13 +53,13 @@ function TourHero({ tour }) {
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm shadow-lg shadow-primary-600/25"
+              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 text-sm shadow-lg shadow-primary-600/25"
             >
               Enquire Now
             </Link>
             <Link
               to={`/destinations/${tour.destinationSlug}`}
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 text-sm"
             >
               View Destination
             </Link>
@@ -82,7 +82,7 @@ function QuickFacts({ tour }) {
 
   return (
     <section className="py-12 md:py-16 border-b border-neutral-100">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {facts.map((fact, i) => (
             <motion.div
@@ -93,9 +93,9 @@ function QuickFacts({ tour }) {
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className="text-center p-4 rounded-xl bg-neutral-50"
             >
-               <div className="w-10 h-10 rounded-lg bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-2">
-                 {fact.icon}
-               </div>
+              <div className="w-10 h-10 rounded-lg bg-secondary-50 text-secondary-600 flex items-center justify-center mx-auto mb-2">
+                {fact.icon}
+              </div>
               <p className="text-xs text-neutral-400 mb-0.5">{fact.label}</p>
               <p className="text-sm font-semibold text-neutral-800">{fact.value}</p>
             </motion.div>
@@ -109,7 +109,7 @@ function QuickFacts({ tour }) {
 function TourOverview({ tour }) {
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -129,7 +129,7 @@ function TourOverview({ tour }) {
 function TourHighlights({ tour }) {
   return (
     <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -169,7 +169,7 @@ function TourHighlights({ tour }) {
 function TourItinerary({ tour }) {
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -196,7 +196,7 @@ function TourItinerary({ tour }) {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="relative flex gap-4 md:gap-6 pb-8 last:pb-0"
               >
-                <div className="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-600 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-primary-600/20">
+                <div className="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-500 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-primary-500/20">
                   {String(day.day).padStart(2, '0')}
                 </div>
                 <div className="flex-1 bg-white rounded-xl p-5 md:p-6">
@@ -215,7 +215,7 @@ function TourItinerary({ tour }) {
 function InclusionsExclusions({ tour }) {
   return (
     <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -232,7 +232,7 @@ function InclusionsExclusions({ tour }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="bg-white rounded-2xl p-6 md:p-8"
+            className="bg-white rounded-xl p-6 md:p-8"
           >
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center">
@@ -259,7 +259,7 @@ function InclusionsExclusions({ tour }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="bg-white rounded-2xl p-6 md:p-8"
+            className="bg-white rounded-xl p-6 md:p-8"
           >
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center">
@@ -291,7 +291,7 @@ function TourGallery({ tour }) {
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -334,7 +334,7 @@ function TravelInfo({ tour }) {
 
   return (
     <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -370,7 +370,7 @@ function TravelInfo({ tour }) {
 function TourCTA({ tour }) {
   return (
     <section className="py-16 md:py-24 bg-neutral-900 text-white">
-      <div className="container mx-auto px-4 text-center">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -386,19 +386,19 @@ function TourCTA({ tour }) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/booking?tour=${encodeURIComponent(tour.name)}`}
-              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-primary-600/25"
+              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 shadow-lg shadow-primary-600/25"
             >
               Enquire Now
             </Link>
             <Link
               to={`/destinations/${tour.destinationSlug}`}
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               View Destination
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               Contact Us
             </Link>
@@ -421,7 +421,7 @@ function RelatedTours({ currentSlug, destinationSlug }) {
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -443,9 +443,9 @@ function RelatedTours({ currentSlug, destinationSlug }) {
             >
               <Link
                 to={`/tours/${tour.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
+                className="group block bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-500"
               >
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={tour.image}
                     alt={tour.name}
@@ -453,7 +453,7 @@ function RelatedTours({ currentSlug, destinationSlug }) {
                     loading="lazy"
                   />
                   <div className="absolute top-3 right-3">
-                    <span className="bg-primary-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                    <span className="bg-secondary-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">
                       ₹{tour.price.toLocaleString()}
                     </span>
                   </div>
@@ -464,7 +464,7 @@ function RelatedTours({ currentSlug, destinationSlug }) {
                     <span className="text-neutral-300">·</span>
                     <span className="text-xs text-neutral-400">{tour.duration}</span>
                   </div>
-                  <h3 className="font-heading font-semibold group-hover:text-primary-600 transition-colors">
+                  <h3 className="font-heading font-semibold group-hover:text-secondary-500 transition-colors">
                     {tour.name}
                   </h3>
                 </div>
@@ -492,7 +492,7 @@ export default function TourDetails() {
       <div className="py-32 text-center">
         <h1 className="text-3xl font-bold mb-4">Tour Not Found</h1>
         <p className="text-neutral-500 mb-6">The tour you're looking for doesn't exist.</p>
-        <Link to="/tours" className="text-primary-600 hover:underline font-medium">
+        <Link to="/tours" className="text-secondary-500 hover:underline font-medium">
           Browse all tours
         </Link>
       </div>

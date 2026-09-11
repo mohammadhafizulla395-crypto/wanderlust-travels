@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { reviews } from '../data/reviews';
-import SectionHeading from './SectionHeading';
 
 function StarRating({ rating }) {
   return (
@@ -8,7 +7,7 @@ function StarRating({ rating }) {
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
-          className={`w-4 h-4 ${star <= rating ? 'text-primary-400' : 'text-neutral-200'}`}
+          className={`w-4 h-4 ${star <= rating ? 'text-primary-500' : 'text-neutral-200'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -27,61 +26,73 @@ function getInitials(name) {
     .toUpperCase();
 }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.15, ease: 'easeOut' },
-  }),
-};
-
 export default function HomeTestimonials() {
-  const displayedReviews = reviews.slice(0, 3);
+  const featured = reviews[0];
+  const rest = reviews.slice(1, 4);
 
   return (
-    <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <SectionHeading
-          title="What Our Travelers Say"
-          subtitle="Real experiences from real travelers. Discover why they trust Wanderlust for their journeys."
-        />
+    <section className="bg-primary-50 py-20 md:py-28">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-secondary-500 font-semibold text-sm tracking-[0.15em] uppercase mb-3">
+              Testimonials
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-tight mb-8">
+              What Our Travelers Say
+            </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
-          {displayedReviews.map((review, i) => (
-            <motion.div
-              key={review.id || i}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-              variants={cardVariants}
-              className="bg-neutral-50 rounded-2xl p-7 flex flex-col"
-            >
-              <StarRating rating={review.rating || 5} />
+            <div className="bg-white rounded-xl p-8 md:p-10">
+              <StarRating rating={featured.rating || 5} />
+              <span className="text-5xl font-serif text-primary-200 select-none leading-none block mb-4">
+                &ldquo;
+              </span>
+              <p className="text-neutral-600 text-lg italic leading-relaxed mb-6">
+                {featured.text}
+              </p>
+              <div className="flex items-center gap-3 pt-5 border-t border-neutral-100">
+                <div className="w-11 h-11 rounded-full bg-secondary-500 text-white flex items-center justify-center text-sm font-semibold">
+                  {getInitials(featured.name)}
+                </div>
+                <div>
+                  <p className="font-medium text-sm text-neutral-800">{featured.name}</p>
+                  <p className="text-xs text-neutral-400">{featured.tour}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-              <div className="relative flex-1">
-                <span className="absolute -top-1 -left-1 text-3xl font-serif text-primary-300/60 select-none leading-none">
-                  &ldquo;
-                </span>
-                <p className="text-neutral-600 text-sm italic leading-relaxed pl-4">
-                  {review.text}
+          <div className="space-y-5">
+            {rest.map((review, i) => (
+              <motion.div
+                key={review.id || i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-white rounded-xl p-6"
+              >
+                <StarRating rating={review.rating || 5} />
+                <p className="text-neutral-600 text-sm italic leading-relaxed mb-4">
+                  &ldquo;{review.text}&rdquo;
                 </p>
-              </div>
-
-              <div className="flex items-center gap-3 mt-6 pt-5 border-t border-neutral-100">
-                <div className="w-10 h-10 rounded-full bg-secondary-100 text-secondary-700 flex items-center justify-center text-xs font-semibold shrink-0">
-                  {getInitials(review.name)}
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-secondary-500 text-white flex items-center justify-center text-xs font-semibold">
+                    {getInitials(review.name)}
+                  </div>
+                  <div>
+                    <p className="font-medium text-sm text-neutral-800">{review.name}</p>
+                    <p className="text-xs text-neutral-400">{review.tour}</p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <p className="font-medium text-sm text-neutral-800 truncate">
-                    {review.name}
-                  </p>
-                  <p className="text-xs text-neutral-400 truncate">{review.tour}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

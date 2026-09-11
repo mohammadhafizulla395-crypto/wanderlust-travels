@@ -17,7 +17,7 @@ function DestinationHero({ destination }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/30 to-transparent" />
       </div>
-      <div className="container mx-auto px-4 relative z-10 pb-10 md:pb-14">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 relative z-10 pb-10 md:pb-14">
         <Breadcrumbs items={[
           { label: 'Destinations', to: '/destinations' },
           { label: destination.name },
@@ -37,13 +37,13 @@ function DestinationHero({ destination }) {
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to={`/tours?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm shadow-lg shadow-primary-600/25"
+              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 text-sm shadow-lg shadow-primary-600/25"
             >
               Explore Tours
             </Link>
             <Link
               to={`/booking?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-full transition-all duration-300 text-sm"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 text-sm"
             >
               Plan Your Trip
             </Link>
@@ -57,7 +57,7 @@ function DestinationHero({ destination }) {
 function DestinationAbout({ destination }) {
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ function DestinationAbout({ destination }) {
 function DestinationHighlights({ destination }) {
   return (
     <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -119,14 +119,14 @@ function DestinationHighlights({ destination }) {
 function BestTimeToVisit({ destination }) {
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-             className="bg-gradient-to-br from-secondary-50 to-secondary-100 rounded-2xl p-8 md:p-10"
+            className="bg-gradient-to-br from-secondary-50 to-secondary-100 rounded-xl p-8 md:p-10"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
@@ -149,7 +149,7 @@ function DestinationTours({ destination, relatedTours }) {
 
   return (
     <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -176,7 +176,7 @@ function DestinationTours({ destination, relatedTours }) {
             >
               <Link
                 to={`/tours/${tour.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 h-full"
+                className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 h-full"
               >
                 <div className="relative h-52 overflow-hidden">
                   <img
@@ -196,7 +196,7 @@ function DestinationTours({ destination, relatedTours }) {
                     <span className="text-xs text-neutral-400">{tour.duration}</span>
                     <span className="text-neutral-300">·</span>
                     <div className="flex items-center gap-1">
-                       <svg className="w-3.5 h-3.5 text-primary-400 fill-current" viewBox="0 0 20 20">
+                      <svg className="w-3.5 h-3.5 text-primary-400 fill-current" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                       <span className="text-xs font-medium text-neutral-600">{tour.rating}</span>
@@ -209,13 +209,13 @@ function DestinationTours({ destination, relatedTours }) {
                     {tour.shortDescription}
                   </p>
                   <div className="flex gap-2">
-                     <span className="flex-1 text-center bg-primary-600 text-white font-medium text-sm py-2.5 rounded-full">
+                    <span className="flex-1 text-center bg-primary-600 text-white font-medium text-sm py-2.5 rounded-lg">
                       View Details
                     </span>
                     <Link
                       to={`/booking?tour=${encodeURIComponent(tour.name)}`}
                       onClick={(e) => e.stopPropagation()}
-                       className="flex-1 text-center border border-primary-200 text-primary-700 font-medium text-sm py-2.5 rounded-full hover:bg-primary-50 transition-colors"
+                      className="flex-1 text-center border border-primary-200 text-primary-700 font-medium text-sm py-2.5 rounded-lg hover:bg-primary-50 transition-colors"
                     >
                       Enquire
                     </Link>
@@ -235,7 +235,7 @@ function DestinationGallery({ destination }) {
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -278,7 +278,7 @@ function TravelTips({ destination }) {
 
   return (
     <section className="py-16 md:py-24 bg-neutral-50">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -314,7 +314,7 @@ function TravelTips({ destination }) {
 function DestinationCTA({ destination }) {
   return (
     <section className="py-16 md:py-24 bg-neutral-900 text-white">
-      <div className="container mx-auto px-4 text-center">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -330,13 +330,13 @@ function DestinationCTA({ destination }) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/tours?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-700 transition-colors duration-300"
+              className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-8 py-4 rounded-lg hover:bg-primary-700 transition-colors duration-300"
             >
               View Tours
             </Link>
             <Link
               to={`/booking?destination=${encodeURIComponent(destination.name)}`}
-              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               Plan Your Trip
             </Link>
@@ -352,7 +352,7 @@ function RelatedDestinations({ currentSlug }) {
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -374,7 +374,7 @@ function RelatedDestinations({ currentSlug }) {
             >
               <Link
                 to={`/destinations/${dest.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
+                className="group block bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-500"
               >
                 <div className="relative h-44 overflow-hidden">
                   <img
@@ -414,7 +414,7 @@ export default function DestinationDetails() {
       <div className="py-32 text-center">
         <h1 className="text-3xl font-bold mb-4">Destination Not Found</h1>
         <p className="text-neutral-500 mb-6">The destination you're looking for doesn't exist.</p>
-        <Link to="/destinations" className="text-primary-600 hover:underline font-medium">
+        <Link to="/destinations" className="text-secondary-500 hover:underline font-medium">
           Browse all destinations
         </Link>
       </div>

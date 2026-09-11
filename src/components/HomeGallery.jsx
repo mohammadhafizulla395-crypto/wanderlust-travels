@@ -1,25 +1,39 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { galleryItems } from '../data/gallery';
-import SectionHeading from './SectionHeading';
 
 const HomeGallery = () => {
   const visibleItems = galleryItems.slice(0, 6);
 
   return (
-    <section className="py-20 bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Captured Moments"
-          subtitle="A glimpse into the incredible experiences waiting for you across India."
-        />
+    <section className="py-20 md:py-28 bg-primary-50">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 md:mb-16 gap-4">
+          <div className="max-w-lg">
+            <p className="text-secondary-500 font-semibold text-sm tracking-[0.15em] uppercase mb-3">
+              Gallery
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-tight">
+              Captured Moments
+            </h2>
+          </div>
+          <Link
+            to="/gallery"
+            className="text-secondary-500 hover:text-secondary-600 font-semibold text-sm inline-flex items-center gap-2 transition-colors"
+          >
+            View Full Gallery
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
 
         <div className="hidden md:grid grid-cols-3 gap-4">
           <div className="grid gap-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0 * 0.08 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden group cursor-pointer aspect-[3/4]"
             >
@@ -39,7 +53,7 @@ const HomeGallery = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 3 * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden group cursor-pointer aspect-square"
             >
@@ -61,7 +75,7 @@ const HomeGallery = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1 * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden group cursor-pointer aspect-square"
             >
@@ -81,7 +95,7 @@ const HomeGallery = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 4 * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden group cursor-pointer aspect-[3/4]"
             >
@@ -103,7 +117,7 @@ const HomeGallery = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 2 * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.08 }}
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden group cursor-pointer aspect-square"
             >
@@ -123,7 +137,7 @@ const HomeGallery = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 5 * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
               viewport={{ once: true }}
               className="relative rounded-xl overflow-hidden group cursor-pointer aspect-square"
             >
@@ -148,7 +162,7 @@ const HomeGallery = () => {
               key={item.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
               viewport={{ once: true }}
               className={`relative rounded-xl overflow-hidden group cursor-pointer ${
                 i % 3 === 0 ? 'row-span-2 aspect-[3/4]' : 'aspect-square'
@@ -167,18 +181,6 @@ const HomeGallery = () => {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link
-            to="/gallery"
-            className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3.5 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
-          >
-            View Full Gallery
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
         </div>
       </div>
     </section>

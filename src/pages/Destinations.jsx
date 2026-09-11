@@ -18,9 +18,9 @@ export default function Destinations() {
 
   return (
     <div>
-      <section className="relative bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900 text-white py-16 md:py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-neutral-900 via-neutral-800 to-secondary-700 text-white py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -40,17 +40,17 @@ export default function Destinations() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
           <div className="mb-10">
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0 lg:flex-wrap lg:justify-center">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`flex-shrink-0 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     activeCategory === cat
-                      ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20'
+                      ? 'bg-secondary-500 text-white shadow-md shadow-secondary-500/20'
                       : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                   }`}
                 >
@@ -62,14 +62,14 @@ export default function Destinations() {
 
           {filtered.length === 0 ? (
             <div className="text-center py-20">
-               <svg className="w-12 h-12 text-neutral-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-               </svg>
+              <svg className="w-12 h-12 text-neutral-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
               <h3 className="font-heading text-xl font-semibold mb-2">No destinations found</h3>
               <p className="text-neutral-500 mb-6">Try selecting a different category.</p>
               <button
                 onClick={() => setActiveCategory('All')}
-                className="text-primary-600 font-medium hover:text-primary-700"
+                className="text-secondary-500 font-medium hover:text-secondary-600"
               >
                 View all destinations
               </button>
@@ -85,9 +85,9 @@ export default function Destinations() {
                 >
                   <Link
                     to={`/destinations/${dest.slug}`}
-                    className="group block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-500 h-full"
+                    className="group block bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all duration-500 h-full"
                   >
-                    <div className="relative h-56 sm:h-64 overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden">
                       <img
                         src={dest.image}
                         alt={`${dest.name} - ${dest.tagline}`}
@@ -112,7 +112,7 @@ export default function Destinations() {
                         {dest.shortDescription}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="inline-flex items-center text-primary-600 font-medium text-sm group-hover:text-primary-700 transition-colors">
+                        <span className="inline-flex items-center text-secondary-500 font-medium text-sm group-hover:text-secondary-600 transition-colors">
                           Explore
                           <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

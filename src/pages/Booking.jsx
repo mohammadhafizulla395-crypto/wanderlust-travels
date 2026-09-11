@@ -50,9 +50,9 @@ Please share the availability and details.`
 
   return (
     <div>
-      <section className="relative bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900 text-white py-16 md:py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-neutral-900 via-neutral-800 to-secondary-700 text-white py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,10 +70,10 @@ Please share the availability and details.`
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <section className="py-20 md:py-28">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-8 max-w-2xl">
           {submitted ? (
-            <div className="bg-secondary-50 rounded-2xl p-8 md:p-12 text-center">
+            <div className="bg-secondary-50 rounded-xl p-8 md:p-12 text-center">
               <div className="w-16 h-16 rounded-full bg-secondary-100 flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -91,7 +91,7 @@ Please share the availability and details.`
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5 bg-white rounded-2xl p-6 md:p-10">
+            <form onSubmit={handleSubmit} className="space-y-5 bg-white rounded-xl p-8">
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-1">Full Name *</label>
                 <input
@@ -100,7 +100,7 @@ Please share the availability and details.`
                   required
                   value={form.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -114,7 +114,7 @@ Please share the availability and details.`
                     required
                     value={form.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+                    className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
                     placeholder="+91 XXXXX XXXXX"
                   />
                 </div>
@@ -125,7 +125,7 @@ Please share the availability and details.`
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+                    className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
                     placeholder="you@email.com"
                   />
                 </div>
@@ -138,7 +138,7 @@ Please share the availability and details.`
                   required
                   value={form.tour}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all bg-white"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all bg-white"
                 >
                   <option value="">Choose a tour</option>
                   {tours.map((t) => (
@@ -157,7 +157,7 @@ Please share the availability and details.`
                     value={form.date}
                     onChange={handleChange}
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+                    className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
                   />
                 </div>
                 <div>
@@ -167,7 +167,7 @@ Please share the availability and details.`
                     required
                     value={form.travelers}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all bg-white"
+                    className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all bg-white"
                   >
                     {[...Array(20)].map((_, i) => (
                       <option key={i + 1} value={i + 1}>{i + 1} {i === 0 ? 'Traveler' : 'Travelers'}</option>
@@ -183,14 +183,14 @@ Please share the availability and details.`
                   rows={3}
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all resize-none"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all resize-none"
                   placeholder="Any specific requirements or questions?"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 rounded-full transition-colors duration-300 text-lg"
+                className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 rounded-lg transition-colors duration-300 text-lg"
               >
                 Send Enquiry via WhatsApp
               </button>

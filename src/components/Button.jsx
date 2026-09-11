@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom'
 
 export default function Button({ children, to, variant = 'primary', size = 'md', className = '', ...props }) {
-  const base = 'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const base = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
 
   const variants = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500',
-    secondary: 'bg-secondary-600 hover:bg-secondary-700 text-white focus:ring-secondary-500',
-    accent: 'bg-accent-500 hover:bg-accent-600 text-white focus:ring-accent-500',
-    outline: 'border-2 border-primary-200 text-primary-700 hover:bg-primary-50 focus:ring-primary-500',
-    ghost: 'text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
-    white: 'bg-white text-primary-700 hover:bg-primary-50 focus:ring-primary-500',
+    primary: 'bg-secondary-500 hover:bg-secondary-600 text-white focus:ring-secondary-500',
+    secondary: 'bg-primary-500 hover:bg-primary-600 text-white focus:ring-primary-500',
+    accent: 'bg-primary-500 hover:bg-primary-600 text-white focus:ring-primary-500',
+    outline: 'border-2 border-neutral-300 text-neutral-700 hover:bg-neutral-100 focus:ring-neutral-400',
+    ghost: 'text-secondary-500 hover:bg-secondary-500/10 focus:ring-secondary-500',
+    white: 'bg-white text-neutral-900 hover:bg-neutral-50 focus:ring-neutral-400',
   }
 
   const sizes = {
