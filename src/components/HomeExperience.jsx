@@ -38,8 +38,8 @@ export default function HomeExperience() {
             className="relative"
           >
             <img
-              src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=800&q=80"
-              alt="Travel adventure"
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+              alt="Travel experience"
               className="rounded-xl aspect-[4/5] object-cover w-full"
             />
             <div className="absolute -bottom-5 -left-5 w-32 h-32 rounded-xl overflow-hidden border-4 border-charcoal hidden md:block">

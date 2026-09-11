@@ -1,35 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-
-const destinations = [
-  'Bali, Indonesia',
-  'Tokyo, Japan',
-  'Santorini, Greece',
-  'Machu Picchu, Peru',
-  'Safari, Kenya',
-  'Maldives',
-  'Iceland',
-  'Morocco',
-  'New Zealand',
-  'Vietnam',
-  'Thailand',
-  'Italy',
-];
-
-const toursByDestination = {
-  'Bali, Indonesia': ['Sacred Temples & Rice Terraces', 'Bali Wellness Retreat', 'Island Hopping Adventure', 'Bali Surf & Culture'],
-  'Tokyo, Japan': ['Cherry Blossom Tour', 'Tokyo Culture & Cuisine', 'Japan Rail Explorer', 'Mt. Fuji & Hakone'],
-  'Santorini, Greece': ['Greek Island Hopping', 'Santorini Sunset Experience', 'Mediterranean Sailing', 'Wine & Culinary Tour'],
-  'Machu Picchu, Peru': ['Inca Trail Trek', 'Sacred Valley Explorer', 'Peru & Bolivia Circuit', 'Amazon Rainforest Extension'],
-  'Safari, Kenya': ['Big Five Safari', 'Masai Mara Migration', 'Kenya Beach & Safari Combo', 'Photography Safari'],
-  'Maldives': ['Overwater Luxury Escape', 'Maldives Diving Adventure', 'Island Hopping Budget', 'Honeymoon Package'],
-  'Iceland': ['Northern Lights Chase', 'Ring Road Adventure', 'Iceland Winter Explorer', 'Hot Springs & Glaciers'],
-  'Morocco': ['Marrakech to Sahara', 'Morocco Imperial Cities', 'Atlas Mountains Trek', 'Morocco Food & Culture'],
-  'New Zealand': ['North & South Island', 'Adventure Capital Tour', 'Lord of the Rings Trail', 'New Zealand Road Trip'],
-  'Vietnam': ['Vietnam North to South', 'Hanoi & Ha Long Bay', 'Vietnam Food Trail', 'Vietnam Cycling Adventure'],
-  'Thailand': ['Bangkok to Chiang Mai', 'Thai Islands Explorer', 'Thai Food & Culture', 'Northern Thailand Trek'],
-  'Italy': ['Amalfi Coast & Rome', 'Tuscany Wine Tour', 'Venice & Cinque Terre', 'Italian Riviera Explorer'],
-};
+import { destinations } from '../data/destinations';
+import { tours } from '../data/tours';
+import { generateWhatsAppUrl } from '../utils/whatsapp';
 
 const Booking = () => {
   const [form, setForm] = useState({
@@ -41,7 +14,9 @@ const Booking = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const availableTours = form.destination ? (toursByDestination[form.destination] || []) : [];
+  const availableTours = form.destination
+    ? tours.filter((t) => t.destinationSlug === form.destination)
+    : tours;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,10 +37,12 @@ const Booking = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const destName = destinations.find((d) => d.slug === form.destination)?.name || form.destination;
+    const tourName = tours.find((t) => t.slug === form.tour)?.name || form.tour;
     const text = encodeURIComponent(
-      `Hello Wanderlust Travels! I'd like to plan a trip:\n\n📍 Destination: ${form.destination}\n🗺 Tour: ${form.tour}\n📅 Preferred Date: ${form.date}\n👥 Travelers: ${form.travelers}\n\n💬 Message: ${form.message || 'No additional message'}`
+      `Hello Wanderlust Travels! I'd like to plan a trip:\n\n📍 Destination: ${destName}\n🗺 Tour: ${tourName}\n📅 Preferred Date: ${form.date}\n👥 Travelers: ${form.travelers}\n\n💬 Message: ${form.message || 'No additional message'}`
     );
-    window.open(`https://wa.me/1234567890?text=${text}`, '_blank');
+    window.open(generateWhatsAppUrl(text.replace(/%20/g, ' ')), '_blank');
     setSubmitted(true);
   };
 
@@ -153,7 +130,7 @@ const Booking = () => {
                         >
                           <option value="" disabled>Choose a destination</option>
                           {destinations.map((d) => (
-                            <option key={d} value={d}>{d}</option>
+                            <option key={d.slug} value={d.slug}>{d.name}</option>
                           ))}
                         </select>
                       </div>
@@ -166,14 +143,11 @@ const Booking = () => {
                           value={form.tour}
                           onChange={handleChange}
                           required
-                          disabled={!form.destination}
-                          className="w-full px-4 py-3.5 rounded-lg border border-neutral-200 bg-white text-charcoal focus:outline-none focus:ring-2 focus:ring-forest/50 focus:border-forest transition-colors appearance-none disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="w-full px-4 py-3.5 rounded-lg border border-neutral-200 bg-white text-charcoal focus:outline-none focus:ring-2 focus:ring-forest/50 focus:border-forest transition-colors appearance-none"
                         >
-                          <option value="" disabled>
-                            {form.destination ? 'Select a tour' : 'Choose a destination first'}
-                          </option>
+                          <option value="" disabled>Select a tour</option>
                           {availableTours.map((t) => (
-                            <option key={t} value={t}>{t}</option>
+                            <option key={t.slug} value={t.slug}>{t.name} — {t.destination}</option>
                           ))}
                         </select>
                       </div>
@@ -254,10 +228,10 @@ const Booking = () => {
             Not Sure Where to Go?
           </h2>
           <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-            Take our travel quiz or speak with one of our experts to discover your perfect destination.
+            Speak with one of our travel experts to discover your perfect Indian destination.
           </p>
           <a
-            href="https://wa.me/1234567890?text=Hi!%20I%20need%20help%20planning%20my%20next%20trip."
+            href={generateWhatsAppUrl('Hi! I need help planning my next trip to India.')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-semibold px-8 py-4 rounded-lg transition-colors"

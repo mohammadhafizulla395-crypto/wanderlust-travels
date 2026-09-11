@@ -1,97 +1,108 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { blogPosts } from '../data/blog';
 
-const categories = ['All', 'Adventure', 'Culture', 'Food', 'Nature', 'Luxury'];
+const categories = ['All', 'Travel Tips', 'Destinations', 'Adventure', 'Culture', 'Sustainability'];
 
 const featuredArticle = {
   id: 1,
-  title: 'The Hidden Temples of Bali: A Spiritual Journey Through Ancient Java',
-  excerpt: 'Discover the mystical temples tucked away in the lush jungles of Bali, where ancient traditions meet breathtaking natural beauty. Our guide takes you off the beaten path to experience the true spiritual heart of Indonesia.',
-  image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=500&fit=crop',
-  category: 'Culture',
-  date: 'September 5, 2026',
-  author: 'Sarah Mitchell',
+  slug: 'best-time-to-visit-kerala',
+  title: blogPosts[0].title,
+  excerpt: blogPosts[0].excerpt,
+  image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=500&fit=crop',
+  category: blogPosts[0].category,
+  date: blogPosts[0].date,
+  author: blogPosts[0].author,
 };
 
 const supportingArticles = [
   {
     id: 2,
-    title: 'Street Food Adventures in Bangkok',
-    excerpt: 'From pad thai to mango sticky rice, explore the vibrant street food scene.',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=250&fit=crop',
-    category: 'Food',
-    date: 'September 2, 2026',
-    author: 'James Chen',
+    slug: 'rajasthan-desert-camp-guide',
+    title: blogPosts[1].title,
+    excerpt: blogPosts[1].excerpt,
+    image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=250&fit=crop',
+    category: blogPosts[1].category,
+    date: blogPosts[1].date,
+    author: blogPosts[1].author,
   },
   {
     id: 3,
-    title: 'Safari Planning: What You Need to Know',
-    excerpt: 'Everything first-time safari goers should know before booking their trip.',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=400&h=250&fit=crop',
-    category: 'Adventure',
-    date: 'August 28, 2026',
-    author: 'Aisha Patel',
+    slug: 'ladakh-road-trip-tips',
+    title: blogPosts[2].title,
+    excerpt: blogPosts[2].excerpt,
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&h=250&fit=crop',
+    category: blogPosts[2].category,
+    date: blogPosts[2].date,
+    author: blogPosts[2].author,
   },
   {
     id: 4,
-    title: 'Luxury Overwater Bungalows Compared',
-    excerpt: 'We compared the top overwater bungalows in the Maldives and French Polynesia.',
-    image: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=250&fit=crop',
-    category: 'Luxury',
-    date: 'August 22, 2026',
-    author: 'Laura Kim',
+    slug: 'kerala-backwaters-houseboat-guide',
+    title: blogPosts[3].title,
+    excerpt: blogPosts[3].excerpt,
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=250&fit=crop',
+    category: blogPosts[3].category,
+    date: blogPosts[3].date,
+    author: blogPosts[3].author,
   },
 ];
 
 const gridArticles = [
   {
     id: 5,
-    title: 'Hiking the Inca Trail: A Complete Guide',
-    image: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&h=250&fit=crop',
-    category: 'Adventure',
-    date: 'August 18, 2026',
-    author: 'Marco Rivera',
+    slug: 'indian-food-trail',
+    title: blogPosts[4].title,
+    image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=250&fit=crop',
+    category: blogPosts[4].category,
+    date: blogPosts[4].date,
+    author: blogPosts[4].author,
   },
   {
     id: 6,
-    title: 'Best Time to Visit Kyoto for Cherry Blossoms',
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=250&fit=crop',
-    category: 'Nature',
-    date: 'August 12, 2026',
-    author: 'Yuki Tanaka',
+    slug: 'sustainable-travel-india',
+    title: blogPosts[5].title,
+    image: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=400&h=250&fit=crop',
+    category: blogPosts[5].category,
+    date: blogPosts[5].date,
+    author: blogPosts[5].author,
   },
   {
     id: 7,
-    title: 'Exploring the Markets of Marrakech',
-    image: 'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=400&h=250&fit=crop',
-    category: 'Culture',
-    date: 'August 8, 2026',
-    author: 'Fatima Al-Rashid',
+    slug: 'best-time-to-visit-kerala',
+    title: 'Why Kerala Should Be Your First Trip to India',
+    image: 'https://images.unsplash.com/photo-1594818379496-db5a7e5f1b46?w=400&h=250&fit=crop',
+    category: 'Destinations',
+    date: 'July 15, 2026',
+    author: 'Wanderlust Team',
   },
   {
     id: 8,
-    title: 'Island Hopping in the Philippines',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=250&fit=crop',
-    category: 'Adventure',
-    date: 'August 2, 2026',
-    author: 'David Santos',
+    slug: 'rajasthan-desert-camp-guide',
+    title: 'A Photographer\'s Guide to Rajasthan',
+    image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&h=250&fit=crop',
+    category: 'Culture',
+    date: 'July 10, 2026',
+    author: 'Wanderlust Team',
   },
   {
     id: 9,
-    title: 'A Wine Lover\'s Guide to Tuscany',
-    image: 'https://images.unsplash.com/photo-1523592121529-f6dde35f079e?w=400&h=250&fit=crop',
-    category: 'Food',
-    date: 'July 28, 2026',
-    author: 'Elena Rossi',
+    slug: 'ladakh-road-trip-tips',
+    title: 'Monsoon Travel in India: Best Destinations',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
+    category: 'Travel Tips',
+    date: 'July 5, 2026',
+    author: 'Wanderlust Team',
   },
   {
     id: 10,
-    title: 'Northern Lights: Chasing the Aurora',
-    image: 'https://images.unsplash.com/photo-1483347756197-71ef80e95f73?w=400&h=250&fit=crop',
-    category: 'Nature',
-    date: 'July 22, 2026',
-    author: 'Erik Larsen',
+    slug: 'kerala-backwaters-houseboat-guide',
+    title: 'Hidden Gems of Himachal Pradesh',
+    image: 'https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=400&h=250&fit=crop',
+    category: 'Adventure',
+    date: 'June 28, 2026',
+    author: 'Wanderlust Team',
   },
 ];
 
@@ -136,7 +147,7 @@ const Blog = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-7"
           >
-            <Link to="/blog/1" className="group block">
+            <Link to={`/blog/${featuredArticle.slug}`} className="group block">
               <div className="overflow-hidden rounded-xl">
                 <img
                   src={featuredArticle.image}
@@ -171,7 +182,7 @@ const Blog = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Link to={`/blog/${article.id}`} className="group flex gap-4">
+                <Link to={`/blog/${article.slug}`} className="group flex gap-4">
                   <div className="overflow-hidden rounded-xl flex-shrink-0 w-28 h-28 md:w-32 md:h-32">
                     <img
                       src={article.image}
@@ -207,7 +218,7 @@ const Blog = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
                 activeCategory === cat
                   ? 'bg-forest text-white'
                   : 'bg-white text-charcoal hover:bg-forest/10 border border-neutral-200'
@@ -229,7 +240,7 @@ const Blog = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
             >
-              <Link to={`/blog/${article.id}`} className="group block">
+              <Link to={`/blog/${article.slug}`} className="group block">
                 <div className="overflow-hidden rounded-xl">
                   <img
                     src={article.image}
@@ -262,7 +273,7 @@ const Blog = () => {
             Ready to Write Your Own Story?
           </h2>
           <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-            Let us help you plan an unforgettable adventure that you'll be writing about for years to come.
+            Let us help you plan an unforgettable Indian adventure that you'll be writing about for years to come.
           </p>
           <Link
             to="/booking"

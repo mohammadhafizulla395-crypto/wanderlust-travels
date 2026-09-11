@@ -2,61 +2,157 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const postsData = {
-  1: {
-    title: 'The Hidden Temples of Bali: A Spiritual Journey Through Ancient Java',
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1400&h=600&fit=crop',
-    category: 'Culture',
-    date: 'September 5, 2026',
-    author: 'Sarah Mitchell',
-    authorImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    excerpt: 'Discover the mystical temples tucked away in the lush jungles of Bali.',
+  'best-time-to-visit-kerala': {
+    title: 'The Best Time to Visit Kerala: A Complete Month-by-Month Guide',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1400&h=600&fit=crop',
+    category: 'Travel Tips',
+    date: '15 August 2026',
+    author: 'Wanderlust Team',
+    authorImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    excerpt: 'Planning a trip to Kerala? Here\'s everything you need to know about the best time to visit.',
     body: [
-      { type: 'paragraph', content: 'The morning mist clings to the ancient stones as we ascend the final steps to Pura Lempuyang. This is not the Bali of resort brochures — this is something older, deeper, and infinitely more moving. Hidden among the volcanic peaks and terraced rice paddies of eastern Bali lie temples that most visitors never see.' },
-      { type: 'paragraph', content: 'Our journey begins in the pre-dawn darkness, guided by local priest Ketut Wija, whose family has tended these sacred grounds for seven generations. The air is thick with the scent of frangipani and burning incense as we navigate narrow paths carved through centuries of jungle growth.' },
-      { type: 'heading', content: 'The Gates of Heaven' },
-      { type: 'paragraph', content: 'Pura Lempuyang, often called the "Gates of Heaven," is one of the oldest and most revered temples in Bali. The iconic split gateway frames Mount Agung, Bali\'s highest volcano, creating a scene that feels almost otherworldly. But the real magic happens when you step beyond the famous photo spot and explore the upper temples.' },
-      { type: 'paragraph', content: 'Climbing the 1,700 steps to the summit temple is a pilgrimage in every sense. Each of the seven temples along the route represents a different stage of spiritual ascent. The locals move slowly, pausing to pray at each station, their offerings of flowers and rice creating colorful patterns on the dark stone.' },
-      { type: 'heading', content: 'Sacred Rituals and Ancient Traditions' },
-      { type: 'paragraph', content: 'What makes these hidden temples truly special is the living tradition they represent. Unlike many historical sites around the world, these are not museum pieces — they are active places of worship where Balinese Hindu traditions have been practiced continuously for over a thousand years.' },
-      { type: 'paragraph', content: 'During our visit, we witnessed a melasti ceremony — a purification ritual held before the Balinese New Year. Hundreds of villagers processed to the temple, carrying sacred objects wrapped in white cloth. The chanting, the gamelan music, and the communal energy created an atmosphere of profound spiritual significance.' },
-      { type: 'heading', content: 'Practical Tips for Temple Visitors' },
-      { type: 'paragraph', content: 'If you\'re planning to visit these hidden temples, there are a few important things to know. First, dress respectfully — sarongs and sashes are required and can be borrowed at the entrance. Second, always ask permission before photographing ceremonies or worshippers. Third, consider hiring a local guide who can explain the significance of what you\'re seeing.' },
-      { type: 'paragraph', content: 'The best time to visit is during the early morning hours when the light is soft and the temples are less crowded. Many of the hidden temples can only be reached by hiring a local driver, as they\'re not on the typical tourist routes. This is part of their charm — they remain authentic and peaceful, far from the crowds that flock to Tanah Lot and Uluwatu.' },
+      { type: 'paragraph', content: 'Kerala is a year-round destination, but the experience changes dramatically depending on when you visit. The state has three main seasons — monsoon, summer, and winter — each offering a unique perspective of God\'s Own Country.' },
+      { type: 'paragraph', content: 'The monsoon season (June to September) transforms Kerala into a lush green paradise. While heavy rains might limit outdoor activities, this is the best time for Ayurvedic treatments. Many resorts offer special monsoon packages with traditional Panchakarma therapies.' },
+      { type: 'heading', content: 'Winter: The Peak Season' },
+      { type: 'paragraph', content: 'Winter (October to February) is the peak tourist season, and for good reason. The weather is pleasant with temperatures ranging from 22°C to 32°C, making it perfect for houseboat cruises, beach visits, and hill station exploration. This is when Kerala truly shines.' },
+      { type: 'paragraph', content: 'Summer (March to May) brings warmer temperatures, but the hill stations of Munnar, Wayanad, and Thekkady offer a cool escape. This is also a great time for wildlife spotting, as animals gather around water sources.' },
+      { type: 'heading', content: 'Our Recommendation' },
+      { type: 'paragraph', content: 'Our recommendation: Visit between November and February for the best overall experience. If you love monsoons and Ayurveda, June to August has its own charm.' },
     ],
     takeaways: [
-      'Pura Lempuyang\'s seven temples represent stages of spiritual ascent with 1,700 steps to climb',
-      'These are living temples — active places of worship, not just historical sites',
-      'Hire a local guide to understand the significance of rituals and architecture',
-      'Visit in early morning for best light and fewer crowds',
-      'Always dress respectfully with sarong and sash provided at entrances',
+      'Kerala has three main seasons: monsoon, summer, and winter',
+      'Winter (Oct-Feb) is the peak season with pleasant weather for all activities',
+      'Monsoon (Jun-Sep) is ideal for Ayurvedic treatments and lush green scenery',
+      'Summer hill stations offer a cool escape from the heat',
+      'November to February offers the best overall experience',
     ],
   },
-  2: {
-    title: 'Street Food Adventures in Bangkok',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&h=600&fit=crop',
-    category: 'Food',
-    date: 'September 2, 2026',
-    author: 'James Chen',
-    authorImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-    excerpt: 'From pad thai to mango sticky rice, explore the vibrant street food scene.',
+  'rajasthan-desert-camp-guide': {
+    title: 'Your Ultimate Guide to Desert Camping in Rajasthan',
+    image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1400&h=600&fit=crop',
+    category: 'Destinations',
+    date: '10 August 2026',
+    author: 'Wanderlust Team',
+    authorImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    excerpt: 'Sleep under a million stars in the Thar Desert. Here\'s everything you need to know about desert camping in Jaisalmer.',
     body: [
-      { type: 'paragraph', content: 'Bangkok is a city that lives and breathes through its street food. Every corner, every alley, every market stall tells a story of flavors passed down through generations. This isn\'t just eating — it\'s an immersive cultural experience that engages all your senses.' },
-      { type: 'paragraph', content: 'Our food journey begins at dawn in Chinatown\'s Yaowarat Road, where vendors set up their portable kitchens before the sun rises. The sizzle of woks, the aroma of charcoal-grilled meats, and the rhythmic chopping of cleavers create a symphony of culinary preparation.' },
-      { type: 'heading', content: 'The Essential Dishes' },
-      { type: 'paragraph', content: 'No Bangkok food tour is complete without pad thai, but the version you\'ll find on the streets bears little resemblance to what you\'ve had at home. The noodles are smoky from the wok, the tamarind sauce perfectly balanced between sweet and sour, and the fresh bean sprouts add a satisfying crunch that ties everything together.' },
-      { type: 'paragraph', content: 'Then there\'s som tum — green papaya salad that packs a punch of flavor: spicy, sour, sweet, and salty all at once. Watch the vendor pound it in a clay mortar, adding ingredients to order. The sound of the pestle is Bangkok\'s culinary heartbeat.' },
-      { type: 'heading', content: 'Hidden Gems Off the Tourist Trail' },
-      { type: 'paragraph', content: 'While the famous markets like Chatuchak and Khao San Road have their charm, the real magic lies in the neighborhoods where locals eat. In Ari, a residential area popular with young professionals, you\'ll find innovative takes on traditional dishes alongside classic recipes that haven\'t changed in decades.' },
-      { type: 'paragraph', content: 'The Rot Fai night market in the eastern part of the city offers a more local experience than its famous counterpart near Chatuchak. Here, families gather at communal tables, sharing plates of grilled seafood, Isaan sausages, and bowls of boat noodles while live music plays in the background.' },
-      { type: 'heading', content: 'Eating Etiquette and Tips' },
-      { type: 'paragraph', content: 'Bangkok street food culture has its own set of unwritten rules. Don\'t sit at a table unless you plan to order from that vendor. Chopsticks are for noodle dishes only — use a spoon and fork for rice-based meals. And always finish what you take — leaving food uneaten is considered wasteful and disrespectful.' },
+      { type: 'paragraph', content: 'There\'s something profoundly magical about spending a night in the Thar Desert. The golden sand dunes, the vast starlit sky, and the traditional Rajasthani folk music create an experience that stays with you forever.' },
+      { type: 'heading', content: 'Choosing Your Desert Camp' },
+      { type: 'paragraph', content: 'The best desert camps are located near Sam Sand Dunes, about 42 km from Jaisalmer. These range from budget-friendly tent stays to ultra-luxury glamping experiences with private butlers and gourmet dining.' },
+      { type: 'paragraph', content: 'A typical desert camp experience includes a jeep safari to the dunes, a camel ride at sunset, traditional Rajasthani dinner with folk music and dance performances, and stargazing in the clear desert sky.' },
+      { type: 'heading', content: 'What to Pack' },
+      { type: 'paragraph', content: 'Pack light cotton clothes for the day and a warm layer for the night — desert temperatures can drop significantly after sunset. Don\'t forget sunscreen, sunglasses, and a good camera.' },
+      { type: 'paragraph', content: 'We recommend booking at least 2 weeks in advance during peak season (October to March). Many camps sell out quickly during Christmas and New Year.' },
     ],
     takeaways: [
-      'Bangkok\'s street food is best experienced in local neighborhoods like Ari and Rot Fai',
-      'Start your food tour at dawn in Chinatown for the most authentic experience',
-      'Use chopsticks only for noodle dishes; use spoon and fork for rice-based meals',
-      'Never sit at a table unless you plan to order from that vendor',
-      'Mango sticky rice from street vendors rivals any restaurant dessert',
+      'Best desert camps are near Sam Sand Dunes, 42 km from Jaisalmer',
+      'Experiences include jeep safari, camel ride, folk music, and stargazing',
+      'Pack light layers — desert temperatures drop significantly at night',
+      'Book at least 2 weeks in advance during peak season (Oct-Mar)',
+      'Camps range from budget tents to ultra-luxury glamping',
+    ],
+  },
+  'ladakh-road-trip-tips': {
+    title: '10 Essential Tips for a Ladakh Road Trip',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1400&h=600&fit=crop',
+    category: 'Adventure',
+    date: '5 August 2026',
+    author: 'Wanderlust Team',
+    authorImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    excerpt: 'Dreaming of a Ladakh road trip? These essential tips will help you prepare for the adventure of a lifetime.',
+    body: [
+      { type: 'paragraph', content: 'A Ladakh road trip is on every adventure traveler\'s bucket list, and rightfully so. The dramatic landscapes, high-altitude passes, and the thrill of the journey make it one of the greatest road trips in the world.' },
+      { type: 'heading', content: 'Acclimatize Properly' },
+      { type: 'paragraph', content: 'First and foremost — acclimatize properly. Leh sits at 11,500 feet, and altitude sickness is a real concern. Spend at least 24 hours resting in Leh before heading to higher altitudes.' },
+      { type: 'paragraph', content: 'The best time to drive to Ladakh is from June to September when the Srinagar-Leh and Manali-Leh highways are open. Always check road conditions before setting out, as landslides can cause unexpected closures.' },
+      { type: 'heading', content: 'Essential Packing' },
+      { type: 'paragraph', content: 'Pack essential medications including Diamox (for altitude sickness), basic first-aid supplies, and plenty of warm clothing. Temperatures can drop below zero even in summer at high passes.' },
+      { type: 'paragraph', content: 'Fuel up whenever you can — petrol pumps are sparse between towns. Carry extra water and dry snacks. A power bank is essential as charging points are limited.' },
+      { type: 'heading', content: 'Stay Flexible' },
+      { type: 'paragraph', content: 'Most importantly, be flexible. Weather in Ladakh can change rapidly, and road conditions are unpredictable. The best experiences often come from unplanned stops along the way.' },
+    ],
+    takeaways: [
+      'Acclimatize for at least 24 hours in Leh before heading higher',
+      'Best time: June to September when highways are open',
+      'Pack Diamox, warm clothing, and first-aid supplies',
+      'Fuel up whenever possible — petrol pumps are sparse',
+      'Be flexible — the best experiences are often unplanned',
+    ],
+  },
+  'kerala-backwaters-houseboat-guide': {
+    title: 'Kerala Houseboats: Everything You Need to Know Before You Book',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1400&h=600&fit=crop',
+    category: 'Travel Tips',
+    date: '1 August 2026',
+    author: 'Wanderlust Team',
+    authorImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    excerpt: 'Houseboats are Kerala\'s most iconic experience. Here\'s how to choose the right one and what to expect.',
+    body: [
+      { type: 'paragraph', content: 'A stay on a Kerala houseboat (known locally as a Kettuvallam) is an experience like no other. These traditional rice barges, converted into floating hotels, glide through the serene backwaters of Alleppey and Kumarakom.' },
+      { type: 'heading', content: 'Choosing Your Houseboat' },
+      { type: 'paragraph', content: 'Houseboats range from budget to ultra-luxury. Budget boats offer basic amenities with a crew of two (a captain and a cook). Premium and luxury houseboats feature air-conditioned bedrooms, modern bathrooms, sun decks, and multi-course meals prepared on board.' },
+      { type: 'paragraph', content: 'The standard houseboat cruise covers Alleppey backwaters, passing through narrow canals lined with coconut palms, village life, and paddy fields. Most cruises start in the late morning and continue until the next morning.' },
+      { type: 'heading', content: 'Booking Tips' },
+      { type: 'paragraph', content: 'Book in advance during peak season (October to February). Weekend rates are typically higher than weekday rates. For the most peaceful experience, opt for a weekday cruise.' },
+      { type: 'paragraph', content: 'Don\'t miss the freshly prepared Kerala meal served on board — the fish curry, karimeen (pearl spot fish), and appam are exceptional. The crew often sources ingredients from local markets along the route.' },
+    ],
+    takeaways: [
+      'Kerala houseboats (Kettuvallam) are traditional rice barges converted into floating hotels',
+      'Options range from budget to ultra-luxury with AC and sun decks',
+      'Standard cruises cover Alleppey backwaters through coconut palm-lined canals',
+      'Book in advance for Oct-Feb peak season; weekdays are more peaceful',
+      'Don\'t miss the freshly prepared Kerala meal on board',
+    ],
+  },
+  'indian-food-trail': {
+    title: 'A Food Lover\'s Guide to Traveling Through India',
+    image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1400&h=600&fit=crop',
+    category: 'Culture',
+    date: '25 July 2026',
+    author: 'Wanderlust Team',
+    authorImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    excerpt: 'India is a food paradise. From Kerala\'s fish curry to Rajasthan\'s dal bati, here\'s a culinary journey across the country.',
+    body: [
+      { type: 'paragraph', content: 'India\'s culinary diversity is as vast as its geographical diversity. Every state, every city, and sometimes every neighborhood has its own specialty. For food-loving travelers, India is an endless adventure.' },
+      { type: 'heading', content: 'Kerala: The Spice Coast' },
+      { type: 'paragraph', content: 'Start in Kerala for the freshest seafood — karimeen fry, prawn moilee, and appam with stew are must-tries. Don\'t miss the traditional Sadhya, a vegetarian feast served on a banana leaf during festivals.' },
+      { type: 'heading', content: 'Rajasthan: Royal Kitchens' },
+      { type: 'paragraph', content: 'Rajasthan offers hearty Rajasthani thalis — dal baati churma, ker sangri, and laal maas. The royal kitchens of Udaipur and Jaipur serve elaborate versions of these traditional dishes.' },
+      { type: 'paragraph', content: 'In Himachal Pradesh, try the local siddu (steamed bread), madra (chickpea curry), and the ubiquitous dham — a traditional feast served during festivals.' },
+      { type: 'paragraph', content: 'Goa\'s cuisine reflects its Portuguese heritage — fish recheado, pork vindaloo, and bebinca (layered dessert) are must-tries. The beach shacks serve some of the freshest seafood you\'ll ever taste.' },
+    ],
+    takeaways: [
+      'India\'s culinary diversity matches its geographical diversity',
+      'Kerala: karimeen fry, prawn moilee, appam, and traditional Sadhya feast',
+      'Rajasthan: dal baati churma, ker sangri, and laal maas',
+      'Himachal: siddu, madra, and traditional dham feast',
+      'Goa: fish recheado, pork vindaloo, and bebinca',
+    ],
+  },
+  'sustainable-travel-india': {
+    title: 'How to Travel Sustainably in India',
+    image: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=1400&h=600&fit=crop',
+    category: 'Sustainability',
+    date: '20 July 2026',
+    author: 'Wanderlust Team',
+    authorImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    excerpt: 'Travel responsibly and leave a positive impact. Here are practical tips for sustainable travel in India.',
+    body: [
+      { type: 'paragraph', content: 'As travelers, we have the power to make a positive impact on the places we visit. Sustainable travel isn\'t about sacrificing comfort — it\'s about making conscious choices that benefit local communities and the environment.' },
+      { type: 'heading', content: 'Choose Local Accommodations' },
+      { type: 'paragraph', content: 'Start by choosing locally owned accommodations over international chains. Homestays and guesthouses not only offer a more authentic experience but also directly support local families and economies.' },
+      { type: 'paragraph', content: 'Reduce plastic usage by carrying a reusable water bottle and shopping bag. Many destinations in India still lack proper waste management, and your small effort can make a significant difference.' },
+      { type: 'heading', content: 'Respect Local Culture' },
+      { type: 'paragraph', content: 'Respect local cultures and traditions. Dress modestly when visiting temples and religious sites. Ask permission before photographing people, especially in rural areas.' },
+      { type: 'paragraph', content: 'Support local artisans by purchasing handicrafts directly from them instead of souvenir shops. This ensures fair prices for the artisans and authentic souvenirs for you.' },
+      { type: 'paragraph', content: 'Choose eco-friendly tour operators who follow responsible tourism practices. Ask about their policies on waste management, water conservation, and community support.' },
+    ],
+    takeaways: [
+      'Choose locally owned homestays and guesthouses over international chains',
+      'Carry a reusable water bottle and shopping bag to reduce plastic',
+      'Dress modestly at temples and ask before photographing people',
+      'Buy handicrafts directly from artisans for fair prices and authentic souvenirs',
+      'Choose eco-friendly tour operators with responsible tourism policies',
     ],
   },
 };
@@ -81,25 +177,25 @@ const defaultPost = {
 
 const relatedArticles = [
   {
-    id: 5,
-    title: 'Hiking the Inca Trail: A Complete Guide',
-    image: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&h=250&fit=crop',
+    slug: 'best-time-to-visit-kerala',
+    title: 'The Best Time to Visit Kerala',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=250&fit=crop',
+    category: 'Travel Tips',
+    date: '15 August 2026',
+  },
+  {
+    slug: 'rajasthan-desert-camp-guide',
+    title: 'Desert Camping in Rajasthan',
+    image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=250&fit=crop',
+    category: 'Destinations',
+    date: '10 August 2026',
+  },
+  {
+    slug: 'ladakh-road-trip-tips',
+    title: 'Ladakh Road Trip Tips',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&h=250&fit=crop',
     category: 'Adventure',
-    date: 'August 18, 2026',
-  },
-  {
-    id: 6,
-    title: 'Best Time to Visit Kyoto for Cherry Blossoms',
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=250&fit=crop',
-    category: 'Nature',
-    date: 'August 12, 2026',
-  },
-  {
-    id: 7,
-    title: 'Exploring the Markets of Marrakech',
-    image: 'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=400&h=250&fit=crop',
-    category: 'Culture',
-    date: 'August 8, 2026',
+    date: '5 August 2026',
   },
 ];
 
@@ -218,12 +314,12 @@ const BlogDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {relatedArticles.map((article, i) => (
             <motion.div
-              key={article.id}
+              key={article.slug}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <Link to={`/blog/${article.id}`} className="group block">
+              <Link to={`/blog/${article.slug}`} className="group block">
                 <div className="overflow-hidden rounded-xl">
                   <img
                     src={article.image}
@@ -253,7 +349,7 @@ const BlogDetail = () => {
             Inspired by This Story?
           </h2>
           <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-            Let us help you create your own unforgettable travel experience.
+            Let us help you create your own unforgettable travel experience in India.
           </p>
           <Link
             to="/booking"

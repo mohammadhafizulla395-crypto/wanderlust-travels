@@ -208,7 +208,7 @@ const FAQ = () => {
               Contact Us
             </Link>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/919100527275"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-semibold px-8 py-3 rounded-lg transition-colors"
